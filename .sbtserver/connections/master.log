@@ -1,0 +1,8 @@
+New log file opened at Sun Oct 02 18:15:14 CST 2016 by 2904@DESKTOP-PPQ7EOJ
+Taking next connection to: 2505
+Checking to see if clients are empty...
+No non-daemon clients connected after 3 min. Shutting down.
+Server socket thread exiting.
+0 clients open, will close them...
+All client sockets have been closed.
+Closing the 2904@DESKTOP-PPQ7EOJ logs at Sun Oct 02 18:40:15 CST 2016, goodbye.

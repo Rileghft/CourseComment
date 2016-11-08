@@ -1,0 +1,32 @@
+@(title: String)
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <title>@title</title>
+    <link rel="stylesheet" href="@routes.Assets.versioned("stylesheets/main.css")">
+      <!-- 最新編譯和最佳化的 CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.1/css/bootstrap.min.css">
+
+      <!-- all bootstrap need jquery -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+
+      <!-- 最新編譯和最佳化的 JavaScript -->
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.1/js/bootstrap.min.js"></script>
+
+  </head>
+  <body>
+    @nav(title)
+    <div id="main_div" class="center">
+      <div id="jumbotron" class>
+      @search("")
+      </div>
+      @department_list(scala.List[String]("工程學院","資訊學院","管理學院","人文社會學院","電機通訊學院"))
+      <div id="courses" class="center">
+        @course_card("程式設計(一)")
+        @course_card("資料結構")
+        @course_card("專業實習")
+      </div>
+    </div>
+  </body>
+</html>

@@ -20,17 +20,23 @@
     margin-left:auto;
     margin-right:auto;
 }
+
 .dep {
-    background-color: #09d6ff;
+    background-color: #25a3c7;
     width: 15%;
     text-align: center;
     display: inline-block;
 }
+.dep:hover{
+    background-color: #09d6ff;
+
+}
 #space {
-    width: 50%;
-    height: 50px;
     text-align: center;
-    margin-top: 10px;
+    margin-left: 0%;
+    margin-right:0%;
+    background-color: #25a3c7;
+
 }
 #main_div{
 }

@@ -15,6 +15,7 @@
     width: 100%;
     height:240px;
     text-align: center;
+    background-color: #ffffcc;
 }
 .center {
     margin-left:auto;
@@ -22,20 +23,20 @@
 }
 
 .dep {
-    background-color: #25a3c7;
+    background-color: #cc9933;
     width: 15%;
     text-align: center;
     display: inline-block;
 }
 .dep:hover{
-    background-color: #09d6ff;
+    background-color: #be772d;
 
 }
 #space {
     text-align: center;
     margin-left: 0%;
     margin-right:0%;
-    background-color: #25a3c7;
+    background-color: #cc9933;
 
 }
 #main_div{
@@ -44,10 +45,28 @@
     width:60%;
     text-align: center;
     margin-top: 10px;
+    margin-bottom: 20%;
 }
 .course_card{
     display: inline-block;
     background-color: #25a3c7;
     height:80px;
     width:150px;
+}
+#footerBox{
+    width:100%;
+    height: 100px;
+    background-color: #990033;
+    text-align: center;
+    padding-top: 20px;
+}
+#footerDiscript{
+    font-size:13px;
+    color: #eeeeee;
+    line-height:20px;
+
+}
+#footerDiscript a{
+    color: #eeeeee;
+    padding: 3px;
 }

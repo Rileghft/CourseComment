@@ -1,7 +1,13 @@
-@(name: String)
+@(name: String ,teacher: String)
 <!DOCTYPE html>
 <div class="course_card">
-  <h5>
-    課程 : @name
-  </h5>
+  <div class="course_title">
+    課程名稱 : @name
+  </div>
+  <div class="couse_teacher">
+    授課教授 : @teacher
+  </div>
+  <div class="rating">
+    <span>☆</span><span>☆</span><span>☆</span><span>☆</span><span>☆</span>
+  </div>
 </div>

@@ -27,17 +27,20 @@
     width: 15%;
     text-align: center;
     display: inline-block;
+    transition-timing-function: ease-in;
+    -webkit-transition: box-shadow 0.5s, background-color 0.5s; /*Safari*/
+    transition: box-shdow 0.5s ,background-color 0.5s;
 }
 .dep:hover{
     background-color: #be772d;
-
+    box-shadow: 4px 4px 4px #4d6549;
 }
 #space {
     text-align: center;
     margin-left: 0%;
     margin-right:0%;
     background-color: #cc9933;
-
+    padding-bottom: 6px;
 }
 #main_div{
 }
@@ -51,7 +54,9 @@
     display: inline-block;
     background-color: #25a3c7;
     height:80px;
-    width:150px;
+    /*width:150px;*/
+    padding-right:12px;
+    padding-left:12px;
 }
 #footerBox{
     width:100%;
@@ -69,4 +74,16 @@
 #footerDiscript a{
     color: #eeeeee;
     padding: 3px;
+}
+
+.rating {
+    unicode-bidi: bidi-override;
+    direction: rtl;
+}
+
+.rating > span:hover:before,
+.rating > span:hover ~ span:before {
+    content: "\2605";
+    position: absolute;
+    color: #FFFF00;
 }

@@ -1,5 +1,7 @@
-@(name: String ,teacher: String)
+@(name: String ,teacher: String, rating: scala.Float)
 <!DOCTYPE html>
+<!-- for rating translate -->
+<script src="@routes.Assets.versioned("javascripts/rating_compute.js")"></script>
 <div class="course_card">
   <div class="course_title">
     課程名稱 : @name
@@ -7,7 +9,17 @@
   <div class="couse_teacher">
     授課教授 : @teacher
   </div>
+    <!--
   <div class="rating">
     <span>☆</span><span>☆</span><span>☆</span><span>☆</span><span>☆</span>
   </div>
+  -->
+    <div class="rating nostar" style="background-image: url(@routes.Assets.versioned("stars.png"))">
+        <div id="@name" class="rating fivestar" style="background-image: url(@routes.Assets.versioned("stars.png"))"></div>
+    </div>
+    <script>
+        var rating_width = rating_width(@rating);
+        document.getElementById("@name").style.width = rating_width+"px";
+    </script>
+    @rating
 </div>

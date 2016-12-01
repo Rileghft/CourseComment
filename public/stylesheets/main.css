@@ -75,7 +75,7 @@
     color: #eeeeee;
     padding: 3px;
 }
-
+/*
 .rating {
     unicode-bidi: bidi-override;
     direction: rtl;
@@ -86,4 +86,16 @@
     content: "\2605";
     position: absolute;
     color: #FFFF00;
+}*/
+
+.rating {
+    width:124px;
+    height:19px;
+    margin:0 0 0 0;
+}
+.nostar {
+    background-position: 0 0
+}
+.fivestar{
+    background-position: 0 -95px;
 }

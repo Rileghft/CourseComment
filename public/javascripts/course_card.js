@@ -48,6 +48,10 @@ function create_course_teacher(name) {
 }
 
 function create_rating_bar(rating) {
+    var star_width = 20;
+    var star_margin = 3;
+    var star_png_width = 124;
+
     var prograce = document.createElement("div");
     var att_prograce_class = document.createAttribute("class");
     att_prograce_class.value = "rating ";
@@ -66,12 +70,11 @@ function create_rating_bar(rating) {
     var integer = Math.floor(rating);
     var decimal = rating - integer;
     for(var i = 0 ; i< integer; i++){
-        rating_width += 26;
+        rating_width += (star_width + star_margin + star_margin);
         //star width 20, margin 3 so star and the left space is 20 + 3 + 3 = 26
     }
-    //document.write("rating width before add decimal is "+rating_width);
-    rating_width += decimal * 20;
-    rating_width = (rating_width>124)?124 : rating_width;
+    rating_width += decimal * star_width;
+    rating_width = (rating_width > star_png_width) ? star_png_width : rating_width;
 
     prograce.style.width = rating_width+"px";
 

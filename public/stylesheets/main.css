@@ -54,9 +54,9 @@
     display: inline-block;
     background-color: #25a3c7;
     height:80px;
-    /*width:150px;*/
     padding-right:12px;
     padding-left:12px;
+    margin: 5px 5px 5px 5px;
 }
 #footerBox{
     width:100%;
@@ -75,26 +75,15 @@
     color: #eeeeee;
     padding: 3px;
 }
-/*
-.rating {
-    unicode-bidi: bidi-override;
-    direction: rtl;
-}
-
-.rating > span:hover:before,
-.rating > span:hover ~ span:before {
-    content: "\2605";
-    position: absolute;
-    color: #FFFF00;
-}*/
 
 .rating {
-    width:124px;
-    height:19px;
+    background-color: yellow;
     margin:0 0 0 0;
 }
 .nostar {
-    background-position: 0 0
+    width:124px;
+    height:19px;
+    background-position: 0 0;
 }
 .fivestar{
     background-position: 0 -95px;

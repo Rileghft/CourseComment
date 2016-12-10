@@ -1,7 +1,7 @@
 /**
  * Created by fnsne on 2016/12/7.
  */
-var json = '{ "courses" :[ {"name": "計算機圖學", "teacher": "葉亦成", "rating": "3.8"},{"name": "程式設計(一)", "teacher": "林基成", "rating": "4.7"} ]}';
+var json = '{ "courses" :[ {"name": "計算機圖學", "teacher": "葉亦成", "rating": "3.8", "class_number": "CS314", "class": "A"},{"name": "程式設計(一)", "teacher": "林基成", "rating": "4.7", "class_number": "CS301", "class": "A"} ]}';
 var obj = JSON.parse(json);
 var star_image = "/assets/stars.png";
 var id_num = 0;
@@ -9,7 +9,7 @@ var id_num = 0;
 document.addEventListener('DOMContentLoaded', function(){
 
     var courses = document.getElementById("courses");
-    /* 動態產生的部分
+    /* 動態產生的部分 目前沒用到
     for(var i = 0 ; i < 2; i++){
         var course_card = create_course_card(obj.courses[i]);
         courses.appendChild(course_card);
@@ -21,6 +21,9 @@ document.addEventListener('DOMContentLoaded', function(){
             var course_card = document.querySelector('#course_card_template');
             course_card.content.querySelector('.course_name').innerText = obj.courses[i].name;
             course_card.content.querySelector('.couse_teacher').innerText = obj.courses[i].teacher;
+            course_card.content.querySelector('.class_number').innerText = obj.courses[i].class_number;
+            course_card.content.querySelector('.class').innerText = obj.courses[i].class;
+            course_card.content.querySelector('.class_rating').innerText = obj.courses[i].rating;
             var clone = document.importNode(course_card.content, true);
             courses.appendChild(clone);
         }
@@ -34,7 +37,7 @@ function supportsTemplate() {
     return 'content' in document.createElement('template');
 }
 
-//由此開始是動態產生的code
+//由此開始是動態產生的code 目前沒用到
 function create_course_card(course_content) {
     var course_card = document.createElement("div");
     var att = document.createAttribute("class");
@@ -103,4 +106,4 @@ function create_rating_bar(rating) {
     prograce.appendChild(stars);
     return prograce;
 }
-//到此為止是動態產生的code
+//到此為止是動態產生的code 目前沒用到

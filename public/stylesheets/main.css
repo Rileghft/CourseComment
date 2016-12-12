@@ -88,3 +88,18 @@
 .fivestar{
     background-position: 0 -95px;
 }
+
+.class_number {
+    display: inline-block;
+    margin: 0px 10px 0px 10px ;
+}
+
+.class{
+    display: inline-block;
+    margin: 0px 10px 0px 10px ;
+}
+
+.credit{
+    display: inline-block;
+    margin: 0px 10px 0px 10px ;
+}

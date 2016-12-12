@@ -1,7 +1,7 @@
 /**
  * Created by fnsne on 2016/12/7.
  */
-var json = '{ "courses" :[ {"name": "計算機圖學", "teacher": "葉亦成", "rating": "3.8", "class_number": "CS314", "class": "A"},{"name": "程式設計(一)", "teacher": "林基成", "rating": "4.7", "class_number": "CS301", "class": "A"} ]}';
+var json = '{ "courses" :[ {"name": "計算機圖學", "class_number": "CS314", "class": "A", "credit" : "3", "type" : "選修", "teacher": "葉亦成", "attr" : "學程A", "position" : "1201A", "difficulty" : "3", "rating": "3.8", "tag" : ""},{"name": "程式設計(一)", "class_number": "CS301", "class": "A", "credit" : "3", "type" : "必修", "teacher": "林基成", "attr" : "學程B", "position" : "1401B", "difficulty" : "4", "rating": "4.7", "tag" : ""}]}';
 var obj = JSON.parse(json);
 var star_image = "/assets/stars.png";
 var id_num = 0;
@@ -21,9 +21,9 @@ document.addEventListener('DOMContentLoaded', function(){
             var course_card = document.querySelector('#course_card_template');
             course_card.content.querySelector('.course_name').innerText = obj.courses[i].name;
             course_card.content.querySelector('.couse_teacher').innerText = obj.courses[i].teacher;
-            course_card.content.querySelector('.class_number').innerText = obj.courses[i].class_number;
-            course_card.content.querySelector('.class').innerText = obj.courses[i].class;
-            course_card.content.querySelector('.class_rating').innerText = obj.courses[i].rating;
+
+            insert_course_name(course_card.content, obj.courses[i].class_number, obj.courses[i].class, obj.courses[i].credit);
+            course_card.content.querySelector('.rating').innerText = obj.courses[i].rating;
             var clone = document.importNode(course_card.content, true);
             courses.appendChild(clone);
         }
@@ -32,6 +32,12 @@ document.addEventListener('DOMContentLoaded', function(){
         document.write("This Browser Not Support");
     }
 });
+
+function insert_course_name( course_content, course_number, course_class, course_credit ) {
+    course_content.querySelector('.class_number').innerText = course_number;
+    course_content.querySelector('.class').innerText = course_class+"班";
+    course_content.querySelector('.credit').innerText = course_credit+"學分";
+}
 
 function supportsTemplate() {
     return 'content' in document.createElement('template');

@@ -1,29 +1,37 @@
 #search_bar{
     width: 60%;
 }
+
 #search{
     position: absolute;
     width:60%;
     left:20%;
     top:50%;
 }
+
+/*頂部區塊*/
 #jumbotron{
     /*
     這邊還要加上search的背景圖片
     */
+    background:url(http://sc.hs.yzu.edu.tw/images/header/post04.jpg);
+    background-size:100% 100%;
+    background-repeat:no-repeat;
     position: relative;
     width: 100%;
     height:240px;
     text-align: center;
-    background-color: #ffffcc;
+    background-color: #ffffff;
 }
+
 .center {
     margin-left:auto;
     margin-right:auto;
 }
 
+/*學院目錄*/
 .dep {
-    background-color: #cc9933;
+    background-color: #eda02d;
     width: 15%;
     text-align: center;
     display: inline-block;
@@ -31,45 +39,56 @@
     -webkit-transition: box-shadow 0.5s, background-color 0.5s; /*Safari*/
     transition: box-shdow 0.5s ,background-color 0.5s;
 }
+
 .dep:hover{
     background-color: #be772d;
     box-shadow: 4px 4px 4px #4d6549;
 }
+
+/*學院目錄存放區塊*/
 #space {
     text-align: center;
     margin-left: 0%;
     margin-right:0%;
-    background-color: #cc9933;
+    background-color: #eda02d;
     padding-bottom: 6px;
 }
+
 #main_div{
+    margin:0;
 }
+
+/*課程卡片存放區塊*/
 #courses{
     width:60%;
     text-align: center;
     margin-top: 10px;
     margin-bottom: 20%;
 }
+
+/*課程卡片*/
 .course_card{
     display: inline-block;
-    background-color: #25a3c7;
+    background-color: #b2afab;
     padding-right:12px;
     padding-left:12px;
     margin: 5px 5px 5px 5px;
 }
+
 #footerBox{
     width:100%;
     height: 100px;
-    background-color: #990033;
+    background-color: #a3551d;
     text-align: center;
     padding-top: 20px;
 }
+
 #footerDiscript{
     font-size:13px;
     color: #eeeeee;
     line-height:20px;
-
 }
+
 #footerDiscript a{
     color: #eeeeee;
     padding: 3px;
@@ -79,11 +98,13 @@
     background-color: yellow;
     margin:0 0 0 0;
 }
+
 .nostar {
     width:124px;
     height:19px;
     background-position: 0 0;
 }
+
 .fivestar{
     background-position: 0 -95px;
 }

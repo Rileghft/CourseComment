@@ -84,7 +84,21 @@ function insert_course_rating( course_content, rating ) {
 }
 
 function insert_course_difficulty( course_content, difficulty ) {
-    course_content.querySelector('.difficulty').innerText = "難度 : "+difficulty;
+    var skull_width = 22;
+    var skull_margin = 1;
+    var skull_png_width = 120;
+
+    var difficulty_width = 0;
+    var integer = Math.floor(difficulty);
+    var decimal = difficulty - integer;
+    for(var i = 0 ; i< integer; i++){
+        difficulty_width+= (skull_width + skull_margin + skull_margin);
+        //star width 20, margin 3 so star and the left space is 20 + 3 + 3 = 26
+    }
+    difficulty_width += decimal * skull_width;
+    difficulty_width = (difficulty_width> skull_png_width) ? skull_png_width : difficulty_width;
+
+    course_content.querySelector('.difficulty').style.width = difficulty_width+"px";
 }
 
 function supportsTemplate() {

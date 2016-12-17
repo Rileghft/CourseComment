@@ -66,7 +66,21 @@ function insert_course_position( course_content, position ) {
 }
 
 function insert_course_rating( course_content, rating ) {
-    course_content.querySelector('.difficulty').innerText = "評分: "+rating;
+    var star_width = 20;
+    var star_margin = 3;
+    var star_png_width = 124;
+
+    var rating_width = 0;
+    var integer = Math.floor(rating);
+    var decimal = rating - integer;
+    for(var i = 0 ; i< integer; i++){
+        rating_width += (star_width + star_margin + star_margin);
+        //star width 20, margin 3 so star and the left space is 20 + 3 + 3 = 26
+    }
+    rating_width += decimal * star_width;
+    rating_width = (rating_width > star_png_width) ? star_png_width : rating_width;
+
+    course_content.querySelector('.rating').style.width = rating_width+"px";
 }
 
 function insert_course_difficulty( course_content, difficulty ) {

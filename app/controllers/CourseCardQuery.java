@@ -26,7 +26,10 @@ public class CourseCardQuery extends Controller{
         MongoCollection cardDB = MongoClientFactory.getCollection(String.format("s%d%d.courseCard", roc_year, semester));
         MongoCursor<Document> cards = cardDB.find("{}").limit(20).as(Document.class);
         ArrayList<String> results = new ArrayList<>(cards.count());
-        cards.forEach(doc -> results.add(doc.toJson()));
+        cards.forEach(card -> {
+            card.remove("_id");
+            results.add(card.toJson());
+        });
         return ok(results.toString()).as("application/json");
     }
 

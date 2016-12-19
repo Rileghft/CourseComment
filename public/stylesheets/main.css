@@ -45,6 +45,12 @@
     box-shadow: 4px 4px 4px #4d6549;
 }
 
+.dep:hover .departmentNavigation
+{
+    visibility: visible;
+    box-shadow:  4px 4px 4px #4d6549;
+}
+
 /*學院目錄存放區塊*/
 #space {
     text-align: center;
@@ -52,6 +58,21 @@
     margin-right:0%;
     background-color: #eda02d;
     padding-bottom: 6px;
+}
+
+.departmentNavigation
+{
+    position: absolute;
+    visibility: hidden;
+    z-index: 900;
+    display: block;
+    background-color: #ffdcaa;
+    width: 15%;
+}
+
+li:hover
+{
+    background-color: #d4a96a;
 }
 
 #main_div{

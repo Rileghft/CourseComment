@@ -4,7 +4,7 @@
 
 # An example controller showing a sample home page
 GET     /                           controllers.HomeController.index
-# get default cards when enter website
+# default cards data api
 GET     /api/defaultCourseCards     controllers.CourseCardQuery.defaultCards
 # An example controller showing how to use dependency injection
 GET     /count                      controllers.CountController.count

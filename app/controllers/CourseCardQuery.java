@@ -23,7 +23,8 @@ public class CourseCardQuery extends Controller{
         int month = cal.get(Calendar.MONTH);
         int roc_year = year - 1911;
         int semester = (month > 11 || month < 5)? 2: 1;
-        MongoCollection cardDB = MongoClientFactory.getCollection(String.format("s%d%d.courseCard", roc_year, semester));
+        int semester_year = roc_year - (semester == 2? 1: 0);
+        MongoCollection cardDB = MongoClientFactory.getCollection(String.format("s%d%d.courseCard", semester_year, semester));
         MongoCursor<Document> cards = cardDB.find("{}").limit(20).as(Document.class);
         ArrayList<String> results = new ArrayList<>(cards.count());
         cards.forEach(card -> {

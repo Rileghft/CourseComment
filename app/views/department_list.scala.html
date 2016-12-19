@@ -1,7 +1,43 @@
 @(department_list : scala.List[String])
 <!DOCTYPE html>
 <div id="space" >
-  @for(depart <- department_list){
-    <div class="dep center">@depart</div>
-  }
+    <li class="dep center">
+      <a>工程學院</a>
+      <ul class="departmentNavigation">
+        <li>機械工程</li>
+        <li>化學工程與材料科學</li>
+        <li>工業工程與管理</li>
+      </ul>
+    </li>
+  <li class="dep center">
+    <a>資訊學院</a>
+    <ul class="departmentNavigation">
+      <li>資訊工程</li>
+      <li>資訊管理</li>
+      <li>資訊傳播</li>
+    </ul>
+  </li>
+  <li class="dep center">
+    <a>管理學院</a>
+    <ul class="departmentNavigation">
+      <li>管理學院學士英語專班</li>
+    </ul>
+  </li>
+  <li class="dep center">
+    <a>人文社會學院</a>
+    <ul class="departmentNavigation">
+      <li>應用外語</li>
+      <li>中國語文</li>
+      <li>社會暨政策科學</li>
+      <li>藝術與設計</li>
+    </ul>
+  </li>
+  <li class="dep center">
+    <a>電機與通訊學院</a>
+    <ul class="departmentNavigation">
+      <li>光電工程</li>
+      <li>電機工程</li>
+      <li>通訊工程</li>
+    </ul>
+  </li>
 </div>

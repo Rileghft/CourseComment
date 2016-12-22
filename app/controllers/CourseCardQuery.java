@@ -30,9 +30,15 @@ public class CourseCardQuery extends Controller{
         int semester_year = roc_year - (semester == 2? 1: 0);
         MongoCollection cardDB = MongoClientFactory.getCollection(String.format("s%d%d.courseCard", semester_year, semester));
         String deptType = request().getQueryString("deptType");
-        String queryString = String.format("{'courseID': {$regex: '%s'}}", deptType);
+        if (null == deptType) {
+            deptType = "all";
+        }
+        String queryString;
         if ("".equals(injectionCheck(deptType)) || "all".equals(deptType)) {
             queryString = "{}";
+        }
+        else {
+            queryString = String.format("{'courseID': {$regex: '%s'}}", deptType);
         }
         System.out.println(deptType);
         System.out.println(queryString);

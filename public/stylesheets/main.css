@@ -169,3 +169,12 @@ li:hover
 .difficulty_text{
     display: inline-block;
 }
+.filter_element{
+    display: inline-block;
+}
+.filter_title{
+    display: inline-block;
+}
+.filter_group{
+    text-align: center;
+}

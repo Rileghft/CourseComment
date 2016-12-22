@@ -124,13 +124,13 @@ li:hover
 }
 
 .rating {
-    background-color: yellow;
+    #background-color: yellow;
     display: inline-block;
 }
 
 .nostar {
-    width:124px;
-    height:19px;
+    width:120px;
+    height:24px;
     background-position: 0 0;
     background-image: url(/assets/stars.png);
 }

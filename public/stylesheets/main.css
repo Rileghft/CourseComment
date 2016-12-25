@@ -81,7 +81,7 @@ li:hover
 
 /*課程卡片存放區塊*/
 #courses{
-    width:60%;
+    width:80%;
     text-align: center;
     margin-top: 10px;
     margin-bottom: 20%;
@@ -161,12 +161,28 @@ li:hover
     height: 24px;
     display: inline-block;
 }
-.rating_text{
-    display: inline-block;
-    float: left;
-}
+
 .difficulty_text{
     display: inline-block;
+}
+
+.rating_text{
+    display: inline-block;
+}
+.difficulty_text{
+    float: left;
+}
+.difficulty{
+    float: left;
+}
+.time_container{
+    text-align: left;
+}
+.rating_container{
+    text-align: left;
+}
+.difficulty_container{
+    text-align: left;
 }
 .filter_element{
     visibility: hidden;
@@ -189,12 +205,7 @@ li:hover
     width:50%;
     background: #edefaa;
 }
-.difficulty_text{
-    float: left;
-}
-.difficulty{
-    float: left;
-}
-.tag{
-    float: left;
+.element_margin{
+    margin-left:60px;
+    margin-right: 60px;
 }

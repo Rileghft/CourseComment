@@ -87,8 +87,31 @@ public class CourseCardQuery extends Controller{
 
     }
 
+    @BodyParser.Of(BodyParser.Json.class)
+    public Result search() {
+        JsonNode queryParam = request().body().asJson();
+        List<String> results = new LinkedList<>();
+        try {
+            Integer year = queryParam.get("year").asInt();
+            Integer semester = queryParam.get("sem").asInt();
+            String searchText = queryParam.get("searchText").asText();
+            searchText = (searchText == null) ? "" : injectionCheck(searchText);
+            searchText = searchText.replace("", ".*?");
+            System.out.println(searchText);
+            MongoCollection courseDB = MongoClientFactory.getCollection(String.format("s%d%d.course", year, semester));
+            StringBuilder queryBuilder = new StringBuilder();
+            queryBuilder.append(String.format("{$or: [{teachers: {$regex: '%s'}}, {name: {$regex: '%s'}}]}", searchText, searchText));
+            MongoCursor<Document> cards = courseDB.find(queryBuilder.toString())
+                    .projection(cardFields).as(Document.class);
+            cards.forEach(card -> results.add(card.toJson()));
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return ok(results.toString()).as("application/json");
+    }
+
     private static String injectionCheck(String param) {
-        if (param.matches("[\\u4E00-\\u9fa5\\w\\d]+")){
+        if (param != null && param.matches("[\\u4E00-\\u9fa5\\w\\d]+")){
             return param;
         }
         else {

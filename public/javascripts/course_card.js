@@ -84,16 +84,26 @@ function insert_course_attribution( course_content, attrs ) {
     }else{
         var attrStr = attrs[0];
         for(var i = 1; i < attrs.length; i++){
-            attrStr += "," + attrs[i];
+            attrStr += "\n" + attrs[i];
         }
         course_content.querySelector('.attr').innerText =attrStr;
     }
 }
 
 function insert_course_times( course_content, times ) {
-    var timeStr = "時間 : " + times[0];
-    for(var i = 1 ; i < times.length; i++){
+    var timeStr = "時間 : ";
+
+    timeStr += times[0];
+    for(var i = 1 ; ( i < times.length )&&( i < 4 ); i++){
         timeStr += ", " +times[i];
+    }
+    if (times.length > 4) {
+        timeStr += "...";
+        var realTimeStr = "";
+        realTimeStr += times[0];
+        for (var i = 1; i < times.length; i++) {
+            realTimeStr += ", " + times[i];
+        }
     }
     course_content.querySelector('.time').innerText = timeStr;
 }

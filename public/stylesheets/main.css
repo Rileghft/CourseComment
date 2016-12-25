@@ -170,11 +170,23 @@ li:hover
     display: inline-block;
 }
 .filter_element{
-    display: inline-block;
+    visibility: hidden;
+}
+.filter_element_text{
+    font-weight: normal;
+}
+.filter_element:checked + span {
+    font-style: italic;
+    font-weight:bold;
 }
 .filter_title{
     display: inline-block;
 }
 .filter_group{
-    text-align: center;
+}
+#search_filter{
+    margin-left: auto;
+    margin-right: auto;
+    width:50%;
+    background: #edefaa;
 }

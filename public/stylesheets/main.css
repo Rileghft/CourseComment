@@ -91,13 +91,14 @@ li:hover
 .course_card{
     display: inline-block;
     background-color: #f9f6f0;
-    padding-right:12px;
-    padding-left:12px;
     margin: 5px 5px 5px 5px;
+    border-style:solid;
+    border-width: thin;
+    border-color: #abb3b9;
 
     transition-timing-function: ease-in;
     -webkit-transition: box-shadow 0.5s; /* Safari */
-    transition: box-shadow 0.5s;;
+    transition: box-shadow 0.5s;
 }
 
 .course_card:hover{
@@ -133,10 +134,7 @@ li:hover
     height:24px;
     background-position: 0 0;
     background-image: url(/assets/stars.png);
-}
-
-.fivestar{
-    background-position: 0 -95px;
+    float: left;
 }
 
 .class_number {
@@ -165,7 +163,38 @@ li:hover
 }
 .rating_text{
     display: inline-block;
+    float: left;
 }
 .difficulty_text{
     display: inline-block;
+}
+.filter_element{
+    visibility: hidden;
+}
+.filter_element_text{
+    font-weight: normal;
+}
+.filter_element:checked + span {
+    font-style: italic;
+    font-weight:bold;
+}
+.filter_title{
+    display: inline-block;
+}
+.filter_group{
+}
+#search_filter{
+    margin-left: auto;
+    margin-right: auto;
+    width:50%;
+    background: #edefaa;
+}
+.difficulty_text{
+    float: left;
+}
+.difficulty{
+    float: left;
+}
+.tag{
+    float: left;
 }

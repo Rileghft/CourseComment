@@ -1,0 +1,16 @@
+@(name : String, element_list : scala.List[String])
+<!DOCTYPE html>
+
+<div id="grade_group" class="filter_group">
+    <div class="filter_title" >@name : </div>
+    <label>
+        <input type="radio" class="filter_element" checked="checked" name="@name"/>
+        <span>全部</span>
+    </label>
+    @for( element <- element_list){
+    <label>
+        <input type="radio" class="filter_element" name="@name"/>
+        <span>@element</span>
+    </label>
+    }
+</div>

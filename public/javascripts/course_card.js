@@ -39,6 +39,7 @@ function getCourses(courses) {
             insert_course_place_time(course_card.content, obj[i].place_time);
             insert_course_rating(course_card.content, obj[i].recommend);
             insert_course_difficulty(course_card.content, obj[i].difficulty);
+            //insert_course_tags(course_card.content, obj[i].tags);
 
                 var clone = document.importNode(course_card.content, true);
                 courses.appendChild(clone);
@@ -48,6 +49,10 @@ function getCourses(courses) {
         document.write("This Browser Not Support");
     }
     }});
+}
+
+function insert_course_tags( course_content, tags) {
+    course_content.querySelector('.tag').innerText = "tags : this is tags";
 }
 
 function insert_course_name( course_content, name ) {
@@ -75,7 +80,7 @@ function insert_course_teachers( course_content, teachers ) {
 
 function insert_course_attribution( course_content, attrs ) {
     if(attrs.length == 0){
-        course_content.querySelector('.attr').innerText =attrs;
+        course_content.querySelector('.attr').innerText ="\n";
     }else{
         var attrStr = attrs[0];
         for(var i = 1; i < attrs.length; i++){

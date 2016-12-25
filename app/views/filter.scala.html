@@ -5,12 +5,12 @@
     <div class="filter_title" >@name : </div>
     <label>
         <input type="radio" class="filter_element" checked="checked" name="@name"/>
-        <span>全部</span>
+        <span class="filter_element_text">全部</span>
     </label>
     @for( element <- element_list){
     <label>
         <input type="radio" class="filter_element" name="@name"/>
-        <span>@element</span>
+        <span class="filter_element_text">@element</span>
     </label>
     }
 </div>

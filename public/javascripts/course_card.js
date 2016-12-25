@@ -36,7 +36,7 @@ function getCourses(courses) {
             insert_course_type(course_card.content, obj[i].type);
             insert_course_teachers(course_card.content, obj[i].teachers);
             insert_course_attribution(course_card.content, obj[i].attrs);
-            insert_course_place_time(course_card.content, obj[i].place_time);
+            insert_course_times( course_card.content, obj[i].times);
             insert_course_rating(course_card.content, obj[i].recommend);
             insert_course_difficulty(course_card.content, obj[i].difficulty);
             //insert_course_tags(course_card.content, obj[i].tags);
@@ -84,16 +84,34 @@ function insert_course_attribution( course_content, attrs ) {
     }else{
         var attrStr = attrs[0];
         for(var i = 1; i < attrs.length; i++){
-            attrStr += "," + attrs[i];
+            attrStr += "\n" + attrs[i];
         }
         course_content.querySelector('.attr').innerText =attrStr;
     }
 }
 
-function insert_course_place_time( course_content, place_time ) {
-    var place = Object.keys(place_time);
-    var time = place_time[place];
-    course_content.querySelector('.position').innerText = "地點 : " + place + ", 時間 : " +  time;
+function insert_course_times( course_content, times ) {
+    var timeStr = "時間 : ";
+
+    if(times.length == 0){
+        timeStr += "無資料";
+    }else {
+        timeStr += times[0];
+
+        for (var i = 1; ( i < times.length ) && ( i < 4 ); i++) {
+            timeStr += ", " + times[i];
+        }
+        if (times.length > 4) {
+            timeStr += "...";
+            var realTimeStr = "";
+            realTimeStr += times[0];
+            for (var i = 1; i < times.length; i++) {
+                realTimeStr += ", " + times[i];
+            }
+            course_content.querySelector('.time').title = realTimeStr;
+        }
+    }
+    course_content.querySelector('.time').innerText = timeStr;
 }
 
 function insert_course_rating( course_content, rating ) {

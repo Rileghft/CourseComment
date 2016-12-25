@@ -1,8 +1,8 @@
 package controllers;
 
 import com.fasterxml.jackson.databind.JsonNode;
+import com.google.common.collect.Sets;
 import org.bson.Document;
-import org.bson.types.ObjectId;
 import org.jongo.MongoCollection;
 import org.jongo.MongoCursor;
 import play.mvc.BodyParser;
@@ -10,16 +10,16 @@ import play.mvc.Controller;
 import play.mvc.Result;
 import mongo.MongoClientFactory;
 
-import java.util.ArrayList;
-import java.util.Calendar;
-import java.util.LinkedList;
-import java.util.List;
+import java.util.*;
 import java.util.stream.Collectors;
 
 /**
  * Created by 楊舜宇 on 2016/12/18.
  */
 public class CourseCardQuery extends Controller{
+    private static String cardFields = "{courseID: 1, name: 1, classID: 1, credit:1, type: 1, teachers: 1, times: 1," +
+        " recommend: 1, difficulty: 1, attrs: 1, tags: 1, _id: 0}";
+    private static Set<String> acceptDegrees = Sets.newHashSet("學士", "碩士", "博士");
 
     public Result defaultCards() {
         Calendar cal = Calendar.getInstance();
@@ -28,26 +28,23 @@ public class CourseCardQuery extends Controller{
         int roc_year = year - 1911;
         int semester = (month > 11 || month < 5)? 2: 1;
         int semester_year = roc_year - (semester == 2? 1: 0);
-        MongoCollection cardDB = MongoClientFactory.getCollection(String.format("s%d%d.courseCard", semester_year, semester));
+        MongoCollection cardDB = MongoClientFactory.getCollection(String.format("s%d%d.course", semester_year, semester));
         String deptType = request().getQueryString("deptType");
-        if (null == deptType) {
-            deptType = "all";
+        String degree = request().getQueryString("degree");
+        StringBuilder queryBuilder = new StringBuilder();
+        if(!acceptDegrees.contains(degree) || degree.length() != 2) {
+            degree = "學士";
         }
-        String queryString;
-        if ("".equals(injectionCheck(deptType)) || "all".equals(deptType)) {
-            queryString = "{}";
+        if (null == deptType || "all".equals(deptType) || deptType.length() != 2) {
+            queryBuilder.append("{}");
         }
         else {
-            queryString = String.format("{'courseID': {$regex: '%s'}}", deptType);
+            queryBuilder.append(String.format("{deptType: '%s', degree: '%s'}}", injectionCheck(deptType), injectionCheck(degree)));
         }
-        System.out.println(deptType);
-        System.out.println(queryString);
-        MongoCursor<Document> cards = cardDB.find(queryString).sort("{'recommend': -1}").limit(20).as(Document.class);
+        MongoCursor<Document> cards = cardDB.find(queryBuilder.toString()).projection(cardFields)
+                .sort("{'recommend': -1}").limit(20).as(Document.class);
         ArrayList<String> results = new ArrayList<>(cards.count());
-        cards.forEach(card -> {
-            card.remove("_id");
-            results.add(card.toJson());
-        });
+        cards.forEach(card -> results.add(card.toJson()));
         return ok(results.toString()).as("application/json");
     }
 
@@ -77,23 +74,11 @@ public class CourseCardQuery extends Controller{
             queryBuilder.append(String.format("{deptType: '%s'", injectionCheck(deptType)))
                     .append(String.format(", grade: %d", grade))
                     .append(String.format(", degree: '%s'", degree))
-                    .append(String.format(", type: '%s'", injectionCheck(type)));
-            if (times.isEmpty()) {
-                queryBuilder.append("}");
-            }
-            else {
-                queryBuilder.append(String.format(", place_time: %s}", times));
-            }
-            queryBuilder.append(", {card_ref: 1}");
-            MongoCursor<Document> cardRefs = courseDB.find(queryBuilder.toString()).as(Document.class);
-            MongoCollection cardDB = MongoClientFactory.getCollection(String.format("s%d%d.courseCard", year, semester));
-            List<ObjectId> objIDs = new ArrayList<>(cardRefs.count());
-            cardRefs.forEach(ref -> objIDs.add(ref.getObjectId("card_ref")));
-            MongoCursor<Document> cards = cardDB.find("{ _id: { $in: #}}", objIDs).as(Document.class);
-            cards.forEach(card -> {
-                card.remove("_id");
-                results.add(card.toJson());
-            });
+                    .append(String.format(", type: '%s'", injectionCheck(type)))
+                    .append((times.isEmpty())? "}": String.format(", place_time: %s}", times));
+            MongoCursor<Document> cards = courseDB.find(queryBuilder.toString())
+                    .projection(cardFields).as(Document.class);
+            cards.forEach(card -> results.add(card.toJson()));
         } catch (Exception e) {
             e.printStackTrace();
             return badRequest("Illegal Argument");

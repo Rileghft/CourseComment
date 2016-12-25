@@ -93,16 +93,22 @@ function insert_course_attribution( course_content, attrs ) {
 function insert_course_times( course_content, times ) {
     var timeStr = "時間 : ";
 
-    timeStr += times[0];
-    for(var i = 1 ; ( i < times.length )&&( i < 4 ); i++){
-        timeStr += ", " +times[i];
-    }
-    if (times.length > 4) {
-        timeStr += "...";
-        var realTimeStr = "";
-        realTimeStr += times[0];
-        for (var i = 1; i < times.length; i++) {
-            realTimeStr += ", " + times[i];
+    if(times.length == 0){
+        timeStr += "無資料";
+    }else {
+        timeStr += times[0];
+
+        for (var i = 1; ( i < times.length ) && ( i < 4 ); i++) {
+            timeStr += ", " + times[i];
+        }
+        if (times.length > 4) {
+            timeStr += "...";
+            var realTimeStr = "";
+            realTimeStr += times[0];
+            for (var i = 1; i < times.length; i++) {
+                realTimeStr += ", " + times[i];
+            }
+            course_content.querySelector('.time').title = realTimeStr;
         }
     }
     course_content.querySelector('.time').innerText = timeStr;

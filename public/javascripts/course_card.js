@@ -51,6 +51,8 @@ function getCourses(courses) {
     }});
 }
 
+
+
 function insert_course_tags( course_content, tags) {
     course_content.querySelector('.tag').innerText = "tags : this is tags";
 }

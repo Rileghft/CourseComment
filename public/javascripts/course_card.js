@@ -3,33 +3,58 @@
  */
 //var json = '{ "courses" :[ {"name": "計算機圖學", "class_number": "CS314", "class": "A", "credit" : "3", "type" : "選修", "teacher": "葉亦成", "attr" : "學程A", "position" : "1201A", "difficulty" : "3", "rating": "3.8", "tag" : ["tag1, tag2"] },{"name": "程式設計(一)", "class_number": "CS301", "class": "A", "credit" : "3", "type" : "必修", "teacher": "林基成", "attr" : "學程B", "position" : "1401B", "difficulty" : "4", "rating": "4.7", "tag" : ["tag3, tag4, tag5"]}]}';
 var json;
-var obj;
 
 document.addEventListener('DOMContentLoaded', function(){
-
     var courses = document.getElementById("courses");
-    /* 動態產生的部分 目前沒用到
-    for(var i = 0 ; i < 2; i++){
-        var course_card = create_course_card(obj.courses[i]);
-        courses.appendChild(course_card);
-    }*/
+    getDefaultCourses(courses);
+    $('#search_button').click( function () {
+        var search_text = $('#search_bar').prop("value");
+        var year = 105;
+        var semester = 1;
+        var courses = document.getElementById("courses");
 
-    getCourses(courses);
+        var data = search_input_gen(year, semester, search_text);
+        var json_data = JSON.parse(data);
+        $.ajax({
+            url: "/api/search",
+            data:data,
+            type: "POST",
+            dataType: "json",
+            contentType : "application/json",
+            success: function (result) {
+                refresh_course_cards(courses, result);
+            }
 
-
+        });
+    })
+    $('#search_bar').keyup(function (event) {
+        if(event.keyCode == 13){
+            $('#search_button').click();
+        }
+    })
 });
 
-function getCourses(courses) {
+function search_input_gen( year, semester, search_text ) {
+    return ( '{' + '"year" : "' + year +'", "sem" : "' + semester + '", "searchText" : "' + search_text + '"}' );
+}
+
+function getDefaultCourses( courses ) {
     $.ajax({url: "/api/defaultCourseCards",
         type: "Get",
         dataType: "json",
         success : function (result) {
-            obj = result;
             //使用template
-        if(supportsTemplate()){
-            var numOfData = result.length;
-            for(var i = 0 ; i < numOfData; i++){
-                var course_card = document.querySelector('#course_card_template');
+            refresh_course_cards(courses, result);
+    }});
+}
+
+function refresh_course_cards( courses, obj ) {
+    if(supportsTemplate()){
+        remove_old_node_of(courses);
+        //insert new cards
+        var numOfData =obj.length;
+        for(var i = 0 ; i < numOfData; i++){
+            var course_card = document.querySelector('#course_card_template');
 
             insert_course_name(course_card.content, obj[i].name);
             insert_course_class(course_card.content, obj[i].courseID, obj[i].classID, obj[i].credit);
@@ -41,17 +66,20 @@ function getCourses(courses) {
             insert_course_difficulty(course_card.content, obj[i].difficulty);
             //insert_course_tags(course_card.content, obj[i].tags);
 
-                var clone = document.importNode(course_card.content, true);
-                courses.appendChild(clone);
+            var clone = document.importNode(course_card.content, true);
+            courses.appendChild(clone);
         }
 
     }else {//沒有支援Template
         document.write("This Browser Not Support");
     }
-    }});
 }
 
-
+function remove_old_node_of( node ) {
+    while( node.firstChild ){
+        node.removeChild(node.firstChild);
+    }
+}
 
 function insert_course_tags( course_content, tags) {
     course_content.querySelector('.tag').innerText = "tags : this is tags";

@@ -32,7 +32,7 @@
 /*學院目錄*/
 .dep {
     background-color: #eda02d;
-    width: 15%;
+    width: 10%;
     text-align: center;
     display: inline-block;
     transition-timing-function: ease-in;
@@ -70,6 +70,18 @@
     width: 15%;
 }
 
+/*下拉選單*/
+ul{
+    list-style-type: none;
+    padding: 0%;
+}
+
+/*下拉選單項目*/
+li{
+    padding: 5px;
+}
+
+/*游標移至項目行為*/
 li:hover
 {
     background-color: #d4a96a;

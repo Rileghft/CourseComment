@@ -25,7 +25,7 @@ document.addEventListener('DOMContentLoaded', function(){
                         filter_data.grade = 4;
                         break;
                     case '全部':
-                        filter_data.grade = 'all';
+                        filter_data.grade = 0;
                         break;
                 }
             }else if( $box.prop("name") == "學歷" ){

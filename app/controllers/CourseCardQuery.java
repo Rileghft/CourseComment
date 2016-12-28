@@ -86,10 +86,10 @@ public class CourseCardQuery extends Controller{
                     .setQueryField("type", type, "系必修")
                     .setQueryField("times", times.toArray());
 
-            if (null == deptType || "all".equals(deptType) || !acceptDegrees.contains(degree)) {
+            if (null == deptType || "all".equals(deptType)) {
                 queryBuilder.removeQueryField("deptType");
             }
-            if (null == degree || "all".equals(degree)) {
+            if (null == degree || "all".equals(degree) || !acceptDegrees.contains(degree)) {
                 queryBuilder.removeQueryField("degree");
             }
             if (grade == 0) {
@@ -100,6 +100,7 @@ public class CourseCardQuery extends Controller{
             }
 
             MongoCursor<Document> cards;
+            System.out.println(queryBuilder.buildQuery());
             if (times.isEmpty()) {
                 cards = courseDB.find(queryBuilder.buildQuery())
                     .projection(cardFields).as(Document.class);

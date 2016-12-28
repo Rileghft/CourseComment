@@ -30,7 +30,7 @@
 }
 
 /*學院目錄*/
-.dep {
+.academy {
     background-color: #eda02d;
     width: 10%;
     text-align: center;
@@ -40,12 +40,12 @@
     transition: box-shdow 0.5s ,background-color 0.5s;
 }
 
-.dep:hover{
+.academy:hover{
     background-color: #be772d;
     box-shadow: 4px 4px 4px #4d6549;
 }
 
-.dep:hover .departmentNavigation
+.academy:hover .departmentNavigation
 {
     visibility: visible;
     box-shadow:  4px 4px 4px #4d6549;

@@ -53,9 +53,30 @@ document.addEventListener('DOMContentLoaded', function(){
         }
     })
 
-    $('li').click(function () {
+    $('.dept').click(function () {
         var $list = $(this);
+        var dept = $list.data("dept");
+        var depType_degree = dept.split('-');
+        var deptType = depType_degree[0];
+        var degree = depType_degree[1];
 
+        filter_data.deptType = deptType;
+        switch (degree){
+            case 'BS':
+                filter_data.degree = '學士';
+                break;
+            case 'MS':
+                filter_data.degree = '碩士';
+                break;
+            case 'PhD':
+                filter_data.degree = '博士';
+                break;
+            default:
+                filter_data.degree = degree;
+        }
+
+        filter_data = JSON.stringify(filter_data);
+        get_courses_from_db();
     });
 });
 

@@ -1,8 +1,11 @@
 package controllers;
 
 import com.fasterxml.jackson.databind.JsonNode;
+import com.google.common.collect.Maps;
 import com.google.common.collect.Sets;
+import mongo.MongoQueryBuilder;
 import org.bson.Document;
+import org.jongo.Find;
 import org.jongo.MongoCollection;
 import org.jongo.MongoCursor;
 import play.mvc.BodyParser;
@@ -16,6 +19,7 @@ import java.util.stream.Collectors;
 /**
  * Created by 楊舜宇 on 2016/12/18.
  */
+
 public class CourseCardQuery extends Controller{
     private static String cardFields = "{courseID: 1, name: 1, classID: 1, credit:1, type: 1, teachers: 1, times: 1," +
         " recommend: 1, difficulty: 1, attrs: 1, tags: 1, _id: 0}";
@@ -31,18 +35,24 @@ public class CourseCardQuery extends Controller{
         MongoCollection cardDB = MongoClientFactory.getCollection(String.format("s%d%d.course", semester_year, semester));
         String deptType = request().getQueryString("deptType");
         String degree = request().getQueryString("degree");
-        StringBuilder queryBuilder = new StringBuilder();
-        if(!acceptDegrees.contains(degree) || degree.length() != 2) {
-            degree = "學士";
+        Integer emptyNum = 0;
+        MongoQueryBuilder queryBuilder = MongoQueryBuilder.create()
+            .setQueryField("degree", degree, "學士")
+            .setQueryField("deptType", deptType, "");
+        if (null == deptType || "all".equals(deptType) || !acceptDegrees.contains(degree)) {
+            queryBuilder.removeQueryField("deptType");
+            ++emptyNum;
         }
-        if (null == deptType || "all".equals(deptType) || deptType.length() != 2) {
-            queryBuilder.append("{}");
+        if (null == degree || "all".equals(degree)) {
+            queryBuilder.removeQueryField("degree");
+            ++emptyNum;
         }
-        else {
-            queryBuilder.append(String.format("{deptType: '%s', degree: '%s'}}", injectionCheck(deptType), injectionCheck(degree)));
+        Find find = cardDB.find(queryBuilder.buildQuery()).projection(cardFields)
+                .sort("{'recommend': -1}");
+        if (emptyNum == 2) {
+            find = find.limit(30);
         }
-        MongoCursor<Document> cards = cardDB.find(queryBuilder.toString()).projection(cardFields)
-                .sort("{'recommend': -1}").limit(20).as(Document.class);
+        MongoCursor<Document> cards = find.as(Document.class);
         ArrayList<String> results = new ArrayList<>(cards.count());
         cards.forEach(card -> results.add(card.toJson()));
         return ok(results.toString()).as("application/json");
@@ -62,22 +72,42 @@ public class CourseCardQuery extends Controller{
             Integer year = queryParam.get("year").asInt();
             Integer semester = queryParam.get("sem").asInt();
             String deptType = queryParam.get("deptType").asText();
-            Integer grade = queryParam.get("grade").asInt(1);
-            String degree = queryParam.get("degree").asText();
-            List<Integer> times = queryParam.findValues("times").stream()
-                    .map(JsonNode::asInt).collect(Collectors.toList());
+            Integer grade = queryParam.get("grade").asInt(0);
+            String degree = queryParam.get("degree").asText("學士");
+            List<Integer> times = new ArrayList<>();
             queryParam.withArray("times").forEach(time -> times.add(time.asInt()));
-            String type = queryParam.get("type").asText("必修");
+            String type = queryParam.get("type").asText("系必修");
 
             MongoCollection courseDB = MongoClientFactory.getCollection(String.format("s%d%d.course", year, semester));
-            StringBuilder queryBuilder = new StringBuilder();
-            queryBuilder.append(String.format("{deptType: '%s'", injectionCheck(deptType)))
-                    .append(String.format(", grade: %d", grade))
-                    .append(String.format(", degree: '%s'", degree))
-                    .append(String.format(", type: '%s'", injectionCheck(type)))
-                    .append((times.isEmpty())? "}": String.format(", place_time: %s}", times));
-            MongoCursor<Document> cards = courseDB.find(queryBuilder.toString())
+            MongoQueryBuilder queryBuilder = MongoQueryBuilder.create()
+                    .setQueryField("deptType", deptType, "")
+                    .setQueryField("degree", degree, "學士")
+                    .setQueryField("grade", grade)
+                    .setQueryField("type", type, "系必修")
+                    .setQueryField("times", times.toArray());
+
+            if (null == deptType || "all".equals(deptType) || !acceptDegrees.contains(degree)) {
+                queryBuilder.removeQueryField("deptType");
+            }
+            if (null == degree || "all".equals(degree)) {
+                queryBuilder.removeQueryField("degree");
+            }
+            if (grade == 0) {
+                queryBuilder.removeQueryField("grade");
+            }
+            if (null == type || "all".equals(type)) {
+                queryBuilder.removeQueryField("type");
+            }
+
+            MongoCursor<Document> cards;
+            if (times.isEmpty()) {
+                cards = courseDB.find(queryBuilder.buildQuery())
                     .projection(cardFields).as(Document.class);
+            }
+            else {
+                cards = courseDB.find(queryBuilder.buildQuery(), times)
+                        .projection(cardFields).as(Document.class);
+            }
             cards.forEach(card -> results.add(card.toJson()));
         } catch (Exception e) {
             e.printStackTrace();

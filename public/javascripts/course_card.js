@@ -1,7 +1,6 @@
 /**
  * Created by fnsne on 2016/12/7.
  */
-//var json = '{ "courses" :[ {"name": "計算機圖學", "class_number": "CS314", "class": "A", "credit" : "3", "type" : "選修", "teacher": "葉亦成", "attr" : "學程A", "position" : "1201A", "difficulty" : "3", "rating": "3.8", "tag" : ["tag1, tag2"] },{"name": "程式設計(一)", "class_number": "CS301", "class": "A", "credit" : "3", "type" : "必修", "teacher": "林基成", "attr" : "學程B", "position" : "1401B", "difficulty" : "4", "rating": "4.7", "tag" : ["tag3, tag4, tag5"]}]}';
 var json;
 var year, semester;
 

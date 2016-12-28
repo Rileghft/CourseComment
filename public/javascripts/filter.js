@@ -61,18 +61,23 @@ document.addEventListener('DOMContentLoaded', function(){
         var degree = depType_degree[1];
 
         filter_data.deptType = deptType;
+
         switch (degree){
             case 'BS':
                 filter_data.degree = '學士';
+                $('#education_text').prop("innerText", '學士');
                 break;
             case 'MS':
                 filter_data.degree = '碩士';
+                $('#education_text').prop("innerText", '碩士');
                 break;
             case 'PhD':
                 filter_data.degree = '博士';
+                $('#education_text').prop("innerText", '博士');
                 break;
             default:
                 filter_data.degree = degree;
+                $('#education_text').prop("innerText", '全部學歷');
         }
 
         filter_data = JSON.stringify(filter_data);

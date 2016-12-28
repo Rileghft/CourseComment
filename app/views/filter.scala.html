@@ -4,12 +4,12 @@
 <div id="grade_group" class="filter_group">
     <div class="filter_title" >@name : </div>
     <label>
-        <input type="radio" class="filter_element" checked="checked" name="@name"/>
+        <input type="radio" class="filter_element" checked="checked" name="@name" value="全部@name"/>
         <span class="filter_element_text">全部</span>
     </label>
     @for( element <- element_list){
     <label>
-        <input type="radio" class="filter_element" name="@name"/>
+        <input type="radio" class="filter_element" name="@name" value="@element"/>
         <span class="filter_element_text">@element</span>
     </label>
     }

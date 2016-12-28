@@ -65,21 +65,25 @@ function refresh_course_cards( courses, obj ) {
         remove_old_node_of(courses);
         //insert new cards
         var numOfData =obj.length;
-        for(var i = 0 ; i < numOfData; i++){
-            var course_card = document.querySelector('#course_card_template');
+        if(numOfData == 0){
+            document.getElementById("courses").innerText = "查無資料";
+        }else {
+            for (var i = 0; i < numOfData; i++) {
+                var course_card = document.querySelector('#course_card_template');
 
-            insert_course_name(course_card.content, obj[i].name);
-            insert_course_class(course_card.content, obj[i].courseID, obj[i].classID, obj[i].credit);
-            insert_course_type(course_card.content, obj[i].type);
-            insert_course_teachers(course_card.content, obj[i].teachers);
-            insert_course_attribution(course_card.content, obj[i].attrs);
-            insert_course_times( course_card.content, obj[i].times);
-            insert_course_rating(course_card.content, obj[i].recommend);
-            insert_course_difficulty(course_card.content, obj[i].difficulty);
-            //insert_course_tags(course_card.content, obj[i].tags);
+                insert_course_name(course_card.content, obj[i].name);
+                insert_course_class(course_card.content, obj[i].courseID, obj[i].classID, obj[i].credit);
+                insert_course_type(course_card.content, obj[i].type);
+                insert_course_teachers(course_card.content, obj[i].teachers);
+                insert_course_attribution(course_card.content, obj[i].attrs);
+                insert_course_times(course_card.content, obj[i].times);
+                insert_course_rating(course_card.content, obj[i].recommend);
+                insert_course_difficulty(course_card.content, obj[i].difficulty);
+                //insert_course_tags(course_card.content, obj[i].tags);
 
-            var clone = document.importNode(course_card.content, true);
-            courses.appendChild(clone);
+                var clone = document.importNode(course_card.content, true);
+                courses.appendChild(clone);
+            }
         }
 
     }else {//沒有支援Template

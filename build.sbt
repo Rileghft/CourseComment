@@ -11,5 +11,5 @@ libraryDependencies ++= Seq(
   cache,
   javaWs,
   "org.mongodb" % "mongo-java-driver" % "3.4.0",
-  "uk.co.panaxiom" %% "play-jongo" % "2.0.0-jongo1.3"
+  "org.jongo" % "jongo" % "1.3.0"
 )

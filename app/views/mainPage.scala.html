@@ -26,19 +26,7 @@
       </div>
 
       @department_list(scala.List[String]("工程學院","資訊學院","管理學院","人文社會學院","電機通訊學院"))
-      <div id="search_filter">
-        <div id="hint_text">
-          <span id="semester_year_text">本學年</span>
-          <span id="semester_text">本學期</span>
-          <span id="depart_text">資訊工程學系</span>
-          <span id="grade_text">全部年級</span>
-          <span id="education_text">全部學歷</span>
-          <span id="course_type_text">全部課程類型</span>
-        </div>
-        @filter("年級", scala.List[String]("一年級", "二年級", "三年級", "四年級"))
-        @filter("學歷", scala.List[String]( "學士", "碩士", "博士"))
-        @filter("課程類型", scala.List[String]("系必修", "選修", "必選修", "共同必修", "不必及格必選修", "通識教育課程"))
-      </div>
+      @filter()
       <div id="courses" class="center">
 
       </div>

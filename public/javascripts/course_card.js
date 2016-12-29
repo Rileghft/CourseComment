@@ -10,14 +10,20 @@ document.addEventListener('DOMContentLoaded', function(){
     getDefaultCourses(courses);
     $('#search_button').click( function () {
         var search_text = $('#search_bar').prop("value");
-        year, semester = getYearSemester();
+        let year_sem = getYearSemester();
+        let year = year_sem[0];
+        let sem = year_sem[1];
         var courses = document.getElementById("courses");
 
-        var data = search_input_gen(year, semester, search_text);
-        var json_data = JSON.parse(data);
+        var data = {
+            'year': year,
+            'sem': sem,
+            'searchText': search_text
+        };
+        console.log(data);
         $.ajax({
             url: "/api/search",
-            data:data,
+            data: JSON.stringify(data),
             type: "POST",
             dataType: "json",
             contentType : "application/json",
@@ -43,10 +49,6 @@ function getYearSemester() {
     var sem = (month > 11 || month < 5)? 2: 1;
     var semesterYear =  ROCyear - (sem == 2? 1: 0);
     return [semesterYear, sem];
-}
-
-function search_input_gen( year, semester, search_text ) {
-    return ( '{' + '"year" : "' + year +'", "sem" : "' + semester + '", "searchText" : "' + search_text + '"}' );
 }
 
 function getDefaultCourses( courses ) {

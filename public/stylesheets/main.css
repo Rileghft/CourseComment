@@ -1,8 +1,8 @@
-#search_bar{
+#search-content{
     width: 60%;
 }
 
-#search{
+#search-container{
     position: absolute;
     width:60%;
     left:20%;
@@ -10,82 +10,86 @@
 }
 
 /*頂部區塊*/
-#jumbotron{
-    /*
-    這邊還要加上search的背景圖片
-    */
-    background:url(http://sc.hs.yzu.edu.tw/images/header/post04.jpg);
-    background-size:100% 100%;
-    background-repeat:no-repeat;
+#jumbotron {
     position: relative;
+    height: 500px;
     width: 100%;
-    height:240px;
     text-align: center;
-    background-color: #ffffff;
+}
+
+#head-image {
+    position: relative;
+    height: 100%;
+    width: 100%;
+    background: #ffffff url(http://sc.hs.yzu.edu.tw/images/header/post04.jpg) no-repeat;
+    background-size: cover;
+    filter: blur(3px);
 }
 
 .center {
     margin-left:auto;
     margin-right:auto;
 }
+/*====================*/
 
-/*學院目錄*/
-.academy {
-    background-color: #eda02d;
-    width: 10%;
+
+/*學院目錄存放區塊*/
+.academy-menu {
+    background-color: black;
     text-align: center;
+    margin: auto;
+}
+
+/*學院下拉選單*/
+
+.academy {
     display: inline-block;
+    color: white;
+    font-size: 1em;
+    background-color: black;
+    padding: 20px 30px;
     transition-timing-function: ease-in;
     -webkit-transition: box-shadow 0.5s, background-color 0.5s; /*Safari*/
     transition: box-shdow 0.5s ,background-color 0.5s;
 }
 
-.academy:hover{
-    background-color: #be772d;
-    box-shadow: 4px 4px 4px #4d6549;
+.academy:hover {
+    background-color: #3c3c3c;
 }
 
-.academy:hover .departmentNavigation
-{
-    visibility: visible;
-    box-shadow:  4px 4px 4px #4d6549;
-}
-
-/*學院目錄存放區塊*/
-#space {
-    text-align: center;
-    margin-left: 0%;
-    margin-right:0%;
-    background-color: #eda02d;
-    padding-bottom: 6px;
-}
-
-.departmentNavigation
-{
-    position: absolute;
-    visibility: hidden;
-    z-index: 900;
-    display: block;
-    background-color: #ffdcaa;
-    width: 15%;
-}
 
 /*下拉選單*/
-ul{
-    list-style-type: none;
-    padding: 0%;
-}
-
-/*下拉選單項目*/
-li{
-    padding: 5px;
-}
-
-/*游標移至項目行為*/
-li:hover
+.academy .dept-menu
 {
-    background-color: #d4a96a;
+    display: block;
+    position: absolute;
+    list-style: none outside;
+    padding: 0px;
+    text-align: left;
+    min-width: 100px;
+    margin-left: -30px;
+    visibility: hidden;
+    z-index: 10;
+    background-color: rgba(40, 40, 40, 0.9);
 }
+
+.academy .dept {
+    color: white;
+    font-size: 1em;
+    padding: 10px;
+}
+
+.academy:hover .dept-menu
+{
+    visibility: visible;
+}
+
+.dept:hover
+{
+    background-color: rgb(128, 128, 128);
+}
+
+/*end 學院下拉選單==================================*/
 
 #main_div{
     margin:0;

@@ -8,8 +8,8 @@ var year, semester;
 document.addEventListener('DOMContentLoaded', function(){
     var courses = document.getElementById("courses");
     getDefaultCourses(courses);
-    $('#search_button').click( function () {
-        var search_text = $('#search_bar').prop("value");
+    $('#search').click( function () {
+        var search_text = $('#search-content').prop("value");
         let year_sem = getYearSemester();
         let year = year_sem[0];
         let sem = year_sem[1];
@@ -33,9 +33,9 @@ document.addEventListener('DOMContentLoaded', function(){
 
         });
     })
-    $('#search_bar').keyup(function (event) {
+    $('#search-content').keyup(function (event) {
         if(event.keyCode == 13){
-            $('#search_button').click();
+            $('#search').click();
         }
     })
 });
@@ -171,7 +171,7 @@ function insert_course_rating( course_content, rating ) {
     var decimal = rating - integer;
     for(var i = 0 ; i< integer; i++){
         rating_width += (star_width + star_margin + star_margin);
-        //star width 20, margin 3 so star and the left space is 20 + 3 + 3 = 26
+        //star width 20, margin 3 so star and the left academy-list is 20 + 3 + 3 = 26
     }
     rating_width += decimal * star_width;
     rating_width = (rating_width > star_png_width) ? star_png_width : rating_width;
@@ -189,7 +189,7 @@ function insert_course_difficulty( course_content, difficulty ) {
     var decimal = difficulty - integer;
     for(var i = 0 ; i< integer; i++){
         difficulty_width+= (skull_width + skull_margin + skull_margin);
-        //star width 20, margin 3 so star and the left space is 20 + 3 + 3 = 26
+        //star width 20, margin 3 so star and the left academy-list is 20 + 3 + 3 = 26
     }
     difficulty_width += decimal * skull_width;
     difficulty_width = (difficulty_width> skull_png_width) ? skull_png_width : difficulty_width;

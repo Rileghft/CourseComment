@@ -22,13 +22,17 @@
     @nav(title)
     <div id="main_div" class="center">
       <div id="jumbotron" >
-      @search("")
+        <div id="head-image"></div>
+          @search()
       </div>
+      <div class="content">
+          <div class="academy-menu center">
+              @department_list()
+          </div>
+          @filter()
+          <div id="courses" class="center">
 
-      @department_list(scala.List[String]("工程學院","資訊學院","管理學院","人文社會學院","電機通訊學院"))
-      @filter()
-      <div id="courses" class="center">
-
+          </div>
       </div>
       @footerBox("")
     </div>

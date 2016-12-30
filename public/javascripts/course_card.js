@@ -2,8 +2,8 @@
  * Created by fnsne on 2016/12/7.
  */
 var json;
-var year, semester;
-
+var year, semester, now_sem_year;
+now_sem_year = getYearSemester()[0];
 
 document.addEventListener('DOMContentLoaded', function(){
     var courses = document.getElementById("courses");

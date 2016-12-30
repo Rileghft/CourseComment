@@ -5,7 +5,7 @@
 var filter_data = {
     'year': getYearSemester()[0],
     'sem': getYearSemester()[1],
-    'deptType': "",
+    'deptType': "FC",
     'grade': 0,
     'degree': "all",
     'type': "all"
@@ -69,6 +69,37 @@ document.addEventListener('DOMContentLoaded', function(){
 
         filterQuery();
     });
+
+    $('#semester_select').change(function () {
+        let $sem = $(this);
+        let sem = $sem.val();
+        filter_data.sem = parseInt(sem);
+        $('#semester_text').prop('innerText', "第"+sem+"學期");
+        filterQuery();
+    });
+
+    $('#sem_year_select').change(function () {
+        let $year = $(this);
+        let sem_year = $year.val();
+        filter_data.year = parseInt(sem_year);
+        $('#semester_year_text').prop('innerText', sem_year+"學年");
+        filterQuery();
+    });
+
+    $('#default_sem_year').click(function () {
+        let year = getYearSemester()[0];
+        let sem = getYearSemester()[1];
+        filter_data.year =year;
+        $('#sem_year_select option[value="'+year+'"]').prop('selected', 'selected');
+        $('#semester_year_text').prop('innerText', year+"學年");
+        filter_data.sem = sem;
+        $('#semester_select option[value="'+sem+'"]').prop('selected', 'selected');
+        $('#semester_text').prop('innerText', "第"+sem+"學期");
+
+        filterQuery();
+    });
+
+    create_sem_year_select();
 });
 
 function filterQuery() {
@@ -86,4 +117,21 @@ function filterQuery() {
             console.log(e);
         }
     });
+}
+
+function create_sem_year_select() {
+    if(supportsTemplate()){
+        let select = document.querySelector('#sem_year_template');
+        let begin_sem_year = 99;
+        let sem_year_select = document.getElementById('sem_year_select');
+        for(var i = now_sem_year; i >= begin_sem_year; i--) {
+            select.content.querySelector('.sem_year_element').innerText = i;
+            select.content.querySelector('.sem_year_element').value = i;
+            var clone = document.importNode(select.content, true);
+            sem_year_select.appendChild(clone);
+        }
+
+    }else {//沒有支援Template
+        document.write("This Browser Not Support");
+    }
 }

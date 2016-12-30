@@ -20,4 +20,5 @@ public class HomeController extends Controller {
         return ok(mainPage.render("課程評論系統"));
     }
 
+    public Result showStudentQuestionnaire() { return ok(student_questionnaire_mainPage.render("學生評論")); }
 }

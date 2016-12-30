@@ -5,7 +5,7 @@
 var filter_data = {
     'year': getYearSemester()[0],
     'sem': getYearSemester()[1],
-    'deptType': "",
+    'deptType': "FC",
     'grade': 0,
     'degree': "all",
     'type': "all"
@@ -69,6 +69,22 @@ document.addEventListener('DOMContentLoaded', function(){
 
         filterQuery();
     });
+
+    $('#semester_select').change(function () {
+        let $sem = $(this);
+        let sem = $sem.val();
+        filter_data.sem = parseInt(sem);
+        filterQuery();
+    });
+
+    $('#sem_year_select').change(function () {
+        let $year = $(this);
+        let sem_year = $year.val();
+        filter_data.year = parseInt(sem_year);
+        filterQuery();
+    });
+
+    create_sem_year_select();
 });
 
 function filterQuery() {
@@ -86,4 +102,20 @@ function filterQuery() {
             console.log(e);
         }
     });
+}
+
+function create_sem_year_select() {
+    if(supportsTemplate()){
+        let select = document.querySelector('#sem_year_template');
+        let begin_sem_year = 99;
+        for(var i = begin_sem_year; i <= now_sem_year; i++) {
+            select.content.querySelector('.sem_year_element').innerText = i;
+            select.content.querySelector('.sem_year_element').value = i;
+            var clone = document.importNode(select.content, true);
+            document.getElementById('sem_year_select').appendChild(clone);
+
+        }
+    }else {//沒有支援Template
+        document.write("This Browser Not Support");
+    }
 }

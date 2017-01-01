@@ -231,20 +231,27 @@
 }
 
 /*為了不讓索引列遮到中間區*/
-.container-fluid
-{
+.container-fluid {
     padding: 70px;
 }
 
 /********** 課程資訊頁面 ************/
-.background-1
-{
+.background-1 {
     background-color: white;
 }
 
-.background-2
-{
+.background-2 {
     background-color: #474e5d;
     color: white;
 }
 /************** END ***************/
+
+/********** 課程資訊Tab頁面 **********/
+/*按下tab後顯示的區塊*/
+.tab_content {
+    display:none;
+    padding: 12px 24px;
+    border: 1px solid #ccc;
+    border-top: none;
+}
+/************** END **************/

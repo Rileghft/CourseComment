@@ -236,17 +236,26 @@
 }
 
 /********** 課程資訊頁面 ************/
-.background-1 {
+div.background-1 {
     background-color: white;
 }
 
-.background-2 {
+div.background-2 {
     background-color: #474e5d;
     color: white;
 }
-/************** END ***************/
+/******* 課程資訊顯示區塊 *******/
+div p.course_info {
+    color: white;
+    font-size: 24px;
+}
 
-/********** 課程資訊Tab頁面 **********/
+div ul li {
+    display: inline;
+}
+/************ END ************/
+
+/******** 課程資訊Tab頁面 ********/
 /*按下tab後顯示的區塊*/
 .tab_content {
     display:none;
@@ -254,4 +263,7 @@
     border: 1px solid #ccc;
     border-top: none;
 }
-/************** END **************/
+/************ END ************/
+/************** END ***************/
+
+

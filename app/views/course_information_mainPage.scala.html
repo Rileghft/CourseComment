@@ -1,0 +1,72 @@
+@(title: String)
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>@title</title>
+    <link rel="stylesheet" href="@routes.Assets.versioned("stylesheets/main.css")">
+    <!-- 最新編譯和最佳化的 CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.1/css/bootstrap.min.css">
+
+    <!-- all bootstrap need jquery -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+
+    <!-- 最新編譯和最佳化的 JavaScript -->
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.1/js/bootstrap.min.js"></script>
+
+    <script src="@routes.Assets.versioned("javascripts/course_information.js")"></script>
+</head>
+<body>
+@nav(title)
+<!--推薦度-->
+<div class="container-fluid background-1">
+
+</div>
+
+<!--課程資訊-->
+<div class="container-fluid background-2">
+    <div class="col-md-4">
+        <p class="course_info">課號 : CS123</p>
+        <p class="course_info">開課系所 : 資訊工程學系</p>
+        <p class="course_info">授課教師 : 束霖新(Ling Sing Soh)</p>
+    </div>
+    <div class="col-md-4">
+        <p class="course_info">課程名稱 : CS123</p>
+        <p class="course_info">課程類型 : 系必修</p>
+        <p class="course_info">授課方式 : 課堂授課、分組討論、分組報告</p>
+    </div>
+</div>
+
+<!--課程相關資訊(大綱、評論等)-->
+<div class="container-fluid background-1">
+    <ul class="nav nav-tabs">
+        <li><a class="tab_links" onclick="openTab(event, 'outline')">課程大綱</a></li>
+        <li><a class="tab_links" onclick="openTab(event, 'grade')">評分方式</a></li>
+        <li><a class="tab_links" onclick="openTab(event, 'teacher_comment')">教師評論</a></li>
+        <li><a class="tab_links" onclick="openTab(event, 'student_comment')">學生評論</a></li>
+    </ul>
+
+    <!-- 預設為課程大綱 -->
+    <div id="outline" class="tab_content" style="display: block;">
+        <h3>課程大綱</h3>
+        <p>課程大綱介紹...............</p>
+    </div>
+
+    <div id="grade" class="tab_content">
+        <h3>評分方式</h3>
+        <p>介紹...............</p>
+    </div>
+
+    <div id="teacher_comment" class="tab_content">
+        <h3>教師評論</h3>
+        <p>介紹...............</p>
+    </div>
+
+    <div id="student_comment" class="tab_content">
+        <h3>學生評論</h3>
+        <p>介紹...............</p>
+    </div>
+</div>
+@footerBox("")
+</body>
+</html>

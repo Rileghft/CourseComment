@@ -1,0 +1,212 @@
+
+.course_card{
+    display: inline-block;
+    background-color: #f9f6f0;
+    margin: 5px 5px 5px 5px;
+    border-style:solid;
+    border-width: thin;
+    border-color: #abb3b9;
+
+    transition-timing-function: ease-in;
+    -webkit-transition: box-shadow 0.5s; /* Safari */
+    transition: box-shadow 0.5s;
+}
+
+.course_card:hover{
+    box-shadow: 5px 5px 5px grey;
+}
+
+#footerBox{
+    width:100%;
+    height: 100px;
+    background-color: #a3551d;
+    text-align: center;
+    padding-top: 20px;
+}
+
+#footerDiscript{
+    font-size:13px;
+    color: #eeeeee;
+    line-height:20px;
+}
+
+#footerDiscript a{
+    color: #eeeeee;
+    padding: 3px;
+}
+
+
+
+.class_number {
+    display: inline-block;
+    margin: 0px 10px 0px 10px ;
+}
+
+.class{
+    display: inline-block;
+    margin: 0px 10px 0px 10px ;
+}
+
+#main_div{
+    background: #cedae0;
+}
+
+
+.rating_text{
+    display: inline-block;
+}
+.difficulty_text{
+    float: left;
+}
+.time_container{
+    text-align: left;
+}
+.rating_container{
+    text-align: left;
+}
+.difficulty_container{
+    text-align: left;
+}
+
+.course-container {
+    width:80%;
+    min-height: 100%;
+    margin: auto;
+}
+
+#courses{
+    display: flex;
+    flex-flow: row wrap;
+    justify-content: center;
+    min-height: 100%;
+    position: relative;
+    margin: auto;
+}
+
+/*course card*/
+.course-card {
+    display: flex;
+    flex-flow: column wrap;
+    width: 250px;
+    background-color: white;
+    margin: 20px;
+    border: solid darkgrey 1px;
+    border-radius: 3px;
+
+    transition-timing-function: ease-in;
+    transition: box-shadow 1s;
+}
+
+@media screen and (orientation: portrait){
+    .course-card {
+        width: 100%;
+        height: 80%;
+        font-size: 3em;
+    }
+}
+
+.course-card:hover {
+    box-shadow: 3px 3px 15px grey;
+}
+
+.card-row {
+    display: inline-flex;
+    flex: 1;
+    flex-flow: row nowrap;
+    justify-content: center;
+    position: relative;
+}
+
+.card-column {
+    display: inline-block;
+    text-align: center;
+    width: 100%;
+}
+
+.column-content {
+    display: block;
+    font-size: 1.5em;
+    padding-left: 5px;
+    padding-right: 5px;
+    margin: auto;
+}
+
+.times, .course-name{
+    display: block;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    overflow: hidden;
+}
+
+.times:hover, .course-name:hover {
+    overflow: visible;
+}
+
+.recommend-value, .difficulty-value{
+    display: inline-block;
+    position: relative;
+    float: left;
+}
+
+.recommend {
+    margin-left: 50px;
+    background: url(/assets/stars.png) repeat-x left;
+    width:120px;
+    height:24px;
+}
+
+.difficulty{
+    margin-left: 50px;
+    background: url(/assets/skull.png) repeat-x left;
+    width: 120px;
+    height: 24px;
+}
+
+.tags {
+    display: block;
+    position: relative;
+    list-style-type: none;
+    border-top: dashed darkgrey 1px;
+    padding: 5px 0 5px 0;
+}
+
+.tag {
+    background-color: limegreen;
+    float: left;
+    font-size: 0.7em;
+    margin-left: 20px;
+    border-top-right-radius: 2px;
+    border-bottom-right-radius: 2px;
+}
+
+.tag-text, .tag-text:hover, .tag-text:visited {
+    height: 10px;
+    padding: 0px 5px 0px 0px;
+    margin-left: 10px;
+    color: ghostwhite;
+    font-weight: bold;
+    text-decoration: none;
+}
+
+.tag-text:before {
+    content: '';
+    position: absolute;
+    width: 0px;
+    height: 0px;
+    border: 10px solid transparent;
+    border-right: 10px solid limegreen;
+    left: 0px;
+}
+
+.tag-text:after {
+    content: '';
+    position: absolute;
+    top: 0.9em;
+    left: 1.3em;
+    float: left;
+    width: 0.4em;
+    height: 0.4em;
+    border-radius: 3px;
+    background-color: white;
+    box-shadow: -1px -1px 2px limegreen;
+}

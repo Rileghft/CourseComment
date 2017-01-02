@@ -100,7 +100,6 @@ public class CourseCardQuery extends Controller{
             }
 
             MongoCursor<Document> cards;
-            System.out.println(queryBuilder.buildQuery());
             if (times.isEmpty()) {
                 cards = courseDB.find(queryBuilder.buildQuery())
                     .projection(cardFields).as(Document.class);
@@ -128,7 +127,6 @@ public class CourseCardQuery extends Controller{
             String searchText = queryParam.get("searchText").asText();
             searchText = (searchText == null) ? "" : injectionCheck(searchText);
             searchText = searchText.replace("", ".*?");
-            System.out.println(searchText);
             MongoCollection courseDB = MongoClientFactory.getCollection(String.format("s%d%d.course", year, semester));
             StringBuilder queryBuilder = new StringBuilder();
             queryBuilder.append(String.format("{$or: [{teachers: {$regex: '%s'}}, {name: {$regex: '%s'}}]}", searchText, searchText));

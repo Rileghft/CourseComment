@@ -10,6 +10,13 @@ var filter_data = {
     'degree': "all",
     'type': "all"
 }
+
+var degreeMap = {
+    'BS': '學士',
+    'MS': '碩士',
+    'PhD': '博士',
+    'all': 'all'
+}
 document.addEventListener('DOMContentLoaded', function(){
     $('.filter-grade').click(function () {
         let $box = $(this);
@@ -17,7 +24,7 @@ document.addEventListener('DOMContentLoaded', function(){
         let grade = $box.val();
         $('#grade_text').prop( "innerText" , gradeName);
         filter_data.grade = parseInt(grade);
-        filterQuery();
+        queryFilteredCourseCard();
     });
 
     $('.filter-degree').click(function() {
@@ -26,7 +33,7 @@ document.addEventListener('DOMContentLoaded', function(){
         let degree = $degree.val();
         $('#education_text').prop( "innerText" , degreeName);
         filter_data.degree = degree;
-        filterQuery();
+        queryFilteredCourseCard();
     });
 
     $('.filter-type').click(function() {
@@ -35,7 +42,7 @@ document.addEventListener('DOMContentLoaded', function(){
         let type = $type.val();
         $('#course_type_text').prop( "innerText" , typeName);
         filter_data.type = type;
-        filterQuery();
+        queryFilteredCourseCard();
     });
 
     $('.dept').click(function () {
@@ -45,29 +52,14 @@ document.addEventListener('DOMContentLoaded', function(){
         var deptType = depType_degree[0];
         var degree = depType_degree[1];
         filter_data.deptType = deptType;
+        filter_data.degree = degreeMap[degree];
 
-        switch (degree){
-            case 'BS':
-                filter_data.degree = '學士';
-                $('#education_text').prop("innerText", '學士');
-                break;
-            case 'MS':
-                filter_data.degree = '碩士';
-                $('#education_text').prop("innerText", '碩士');
-                break;
-            case 'PhD':
-                filter_data.degree = '博士';
-                $('#education_text').prop("innerText", '博士');
-                break;
-            default:
-                filter_data.degree = degree;
-                $('#education_text').prop("innerText", '全部學歷');
-        }
-
+        var deptName = $list.prop("innerText");
+        $('#deptName').prop("innerText", deptName);
         $('.filter-degree[checked]').prop('checked', false);
         $('.filter-degree[value="' + filter_data.degree + '"]').prop('checked', true);
 
-        filterQuery();
+        queryFilteredCourseCard();
     });
 
     $('#semester_select').change(function () {
@@ -75,7 +67,7 @@ document.addEventListener('DOMContentLoaded', function(){
         let sem = $sem.val();
         filter_data.sem = parseInt(sem);
         $('#semester_text').prop('innerText', "第"+sem+"學期");
-        filterQuery();
+        queryFilteredCourseCard();
     });
 
     $('#sem_year_select').change(function () {
@@ -83,7 +75,7 @@ document.addEventListener('DOMContentLoaded', function(){
         let sem_year = $year.val();
         filter_data.year = parseInt(sem_year);
         $('#semester_year_text').prop('innerText', sem_year+"學年");
-        filterQuery();
+        queryFilteredCourseCard();
     });
 
     $('#default_sem_year').click(function () {
@@ -96,35 +88,20 @@ document.addEventListener('DOMContentLoaded', function(){
         $('#semester_select option[value="'+sem+'"]').prop('selected', 'selected');
         $('#semester_text').prop('innerText', "第"+sem+"學期");
 
-        filterQuery();
+        queryFilteredCourseCard();
     });
 
     create_sem_year_select();
 });
 
-function filterQuery() {
-    $.ajax({
-        url: "/api/courseCardFilter",
-        data: JSON.stringify(filter_data),
-        type: "POST",
-        dataType: "json",
-        contentType : "application/json",
-        success: function (result) {
-            var courses = document.getElementById("courses");
-            refresh_course_cards(courses, result);
-        },
-        error: function(e) {
-            console.log(e);
-        }
-    });
-}
-
 function create_sem_year_select() {
     if(supportsTemplate()){
         let select = document.querySelector('#sem_year_template');
-        let begin_sem_year = 99;
+        let current_sem = getYearSemester()[0];
+        let begin_sem_year = 95;
         let sem_year_select = document.getElementById('sem_year_select');
-        for(var i = now_sem_year; i >= begin_sem_year; i--) {
+        let i;
+        for(i = current_sem; i >= begin_sem_year; i--) {
             select.content.querySelector('.sem_year_element').innerText = i;
             select.content.querySelector('.sem_year_element').value = i;
             var clone = document.importNode(select.content, true);
@@ -135,3 +112,30 @@ function create_sem_year_select() {
         document.write("This Browser Not Support");
     }
 }
+
+function supportsTemplate() {
+    return 'content' in document.createElement('template');
+}
+
+document.addEventListener('DOMContentLoaded', function(){
+    var courses = document.getElementById("courses");
+    getDefaultCourseCards(courses);
+    $('#search').click(search)
+    $('#search-content').keyup(function (event) {
+        if(event.keyCode == 13){
+            search();
+        }
+    })
+});
+
+function getYearSemester() {
+    var today = new Date();
+    var ADyear = today.getFullYear();
+    var ROCyear = ADyear - 1911;
+    var month = today.getMonth();
+
+    var sem = (month > 11 || month < 5)? 2: 1;
+    var semesterYear =  ROCyear - (sem == 2? 1: 0);
+    return [semesterYear, sem];
+}
+

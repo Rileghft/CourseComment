@@ -1,12 +1,10 @@
-#search-content{
-    width: 60%;
+#main_div{
+    margin:0;
 }
 
-#search-container{
-    position: absolute;
-    width:60%;
-    left:20%;
-    top:50%;
+.center {
+    margin-left:auto;
+    margin-right:auto;
 }
 
 /*頂部區塊*/
@@ -26,21 +24,26 @@
     filter: blur(3px);
 }
 
-.center {
-    margin-left:auto;
-    margin-right:auto;
+#search-content{
+    width: 60%;
 }
+
+#search-container{
+    position: absolute;
+    width:60%;
+    left:20%;
+    top:50%;
+}
+
 /*====================*/
 
-
-/*學院目錄存放區塊*/
+/*學院下拉選單*/
 .academy-menu {
     background-color: black;
     text-align: center;
     margin: auto;
 }
 
-/*學院下拉選單*/
 
 .academy {
     display: inline-block;
@@ -91,116 +94,38 @@
 
 /*end 學院下拉選單==================================*/
 
-#main_div{
-    margin:0;
-}
-
-/*課程卡片存放區塊*/
-#courses{
-    width:80%;
+/*條件過濾框*/
+.filter-container {
     text-align: center;
-    margin-top: 10px;
-    margin-bottom: 20%;
+    background: inherit;
+    margin: auto;
 }
-
-/*課程卡片*/
-.course_card{
-    display: inline-block;
-    background-color: #f9f6f0;
-    margin: 5px 5px 5px 5px;
-    border-style:solid;
-    border-width: thin;
-    border-color: #abb3b9;
-
-    transition-timing-function: ease-in;
-    -webkit-transition: box-shadow 0.5s; /* Safari */
-    transition: box-shadow 0.5s;
-}
-
-.course_card:hover{
-    box-shadow: 5px 5px 5px grey;
-}
-
-#footerBox{
-    width:100%;
-    height: 100px;
-    background-color: #a3551d;
-    text-align: center;
-    padding-top: 20px;
-}
-
-#footerDiscript{
-    font-size:13px;
-    color: #eeeeee;
-    line-height:20px;
-}
-
-#footerDiscript a{
-    color: #eeeeee;
-    padding: 3px;
-}
-
-.rating {
-    #background-color: yellow;
-    display: inline-block;
-}
-
-.nostar {
-    width:120px;
-    height:24px;
-    background-position: 0 0;
-    background-image: url(/assets/stars.png);
-    float: left;
-}
-
-.class_number {
-    display: inline-block;
-    margin: 0px 10px 0px 10px ;
-}
-
-.class{
-    display: inline-block;
-    margin: 0px 10px 0px 10px ;
-}
-
-.credit{
-    display: inline-block;
-    margin: 0px 10px 0px 10px ;
-}
-
-#main_div{
-    background: #cedae0;
-}
-.difficulty{
-    background-image: url(/assets/skull.png);
-    width: 120px;
-    height: 24px;
-    display: inline-block;
-}
-
-.difficulty_text{
-    display: inline-block;
-}
-
-.rating_text{
-    display: inline-block;
-}
-.difficulty_text{
-    float: left;
-}
-.difficulty{
-    float: left;
-}
-.time_container{
+.condition-filter {
     text-align: left;
+    background: white;
+    width: 65%;
+    border-top: solid #e8e8e8 2px;
 }
-.rating_container{
-    text-align: left;
+
+.condition-row {
+    padding: 5px 10px;
+    border-bottom: solid #e8e8e8 2px;
+    border-left: solid  #e8e8e8 2px;
+    border-right: solid #e8e8e8 2px;
 }
-.difficulty_container{
-    text-align: left;
+
+.condition-title {
+    display: inline-block;
+    width: 100px;
+    padding: 5px;
 }
+
+.conditions {
+    display: inline-block;
+}
+
 .filter_element{
+    display: inline-block;
     visibility: hidden;
 }
 .filter_element_text{
@@ -215,12 +140,6 @@
 }
 .filter_group{
 }
-#search_filter{
-    margin-left: auto;
-    margin-right: auto;
-    width:50%;
-    background: #edefaa;
-}
 .element_margin{
     margin-left:60px;
     margin-right: 60px;
@@ -228,3 +147,4 @@
 #hint_text{
     margin-bottom: 20px;
 }
+/*end 條件過濾框==========================================*/

@@ -1,20 +1,17 @@
-<!DOCTYPE html>
-
-<div id="grade_group" class="filter_group">
-    <div id="search_filter">
-        <div id="hint_text">
-            <span id="semester_year_text">本學年</span>
-            <span id="semester_text">本學期</span>
-            <span id="depart_text">資訊工程學系</span>
-            <span id="grade_text">全部年級</span>
-            <span id="education_text">全部學歷</span>
-            <span id="course_type_text">全部課程類型</span>
+<div class="filter-container">
+    <div class="condition-filter center">
+        <div class="condition-row">
+            <div class="condition-title">系所:</div>
+            <span id="deptName">推薦課程</span>
         </div>
-        <div id="sem_year_group">
-            <span>學年 : </span>
+        <div class="condition-row">
+            <div class="condition-title">學年 : </div>
             <select id="sem_year_select" name="semester_year">
             </select>
-            <span>    學期 :</span>
+        </div>
+
+        <div class="condition-row">
+            <div class="condition-title">學期 :</div>
             <select id="semester_select">
                 <option class="sem_element" value="1">一</option>
                 <option class="sem_element" value="2">二</option>
@@ -29,32 +26,35 @@
             <option class="sem_year_element" value=""></option>
         </template>
 
-        <div id="grade_group" class="filter_group">
-            <div class="filter_title">年級 : </div>
-            <label>
-                <input type="radio" class="filter-grade" checked="checked" name="grade" data-text="全部年級" value="0">
-                <span class="filter_element_text">全部</span>
-            </label>
-            <label>
-                <input type="radio" class="filter-grade" name="grade" data-text="一年級" value="1">
-                <span class="filter_element_text">一年級</span>
-            </label>
-            <label>
-                <input type="radio" class="filter-grade" name="grade" data-text="二年級" value="2">
-                <span class="filter_element_text">二年級</span>
-            </label>
-            <label>
-                <input type="radio" class="filter-grade" name="grade" data-text="三年級" value="3">
-                <span class="filter_element_text">三年級</span>
-            </label>
-            <label>
-                <input type="radio" class="filter-grade" name="grade" data-text="四年級" value="4">
-                <span class="filter_element_text">四年級</span>
-            </label>
+        <div class="condition-row">
+            <div class="condition-title">年級 : </div>
+            <div class="conditions">
+                <label>
+                    <input type="radio" class="filter-grade" checked="checked" name="grade" data-text="全部年級" value="0">
+                    <span class="filter_element_text">全部</span>
+                </label>
+                <label>
+                    <input type="radio" class="filter-grade" name="grade" data-text="一年級" value="1">
+                    <span class="filter_element_text">一年級</span>
+                </label>
+                <label>
+                    <input type="radio" class="filter-grade" name="grade" data-text="二年級" value="2">
+                    <span class="filter_element_text">二年級</span>
+                </label>
+                <label>
+                    <input type="radio" class="filter-grade" name="grade" data-text="三年級" value="3">
+                    <span class="filter_element_text">三年級</span>
+                </label>
+                <label>
+                    <input type="radio" class="filter-grade" name="grade" data-text="四年級" value="4">
+                    <span class="filter_element_text">四年級</span>
+                </label>
+            </div>
         </div>
 
-        <div id="grade_group" class="filter_group">
-            <div class="filter_title">學歷 : </div>
+        <div class="condition-row">
+            <div class="condition-title">學歷 : </div>
+            <div class="conditions">
             <label>
                 <input type="radio" class=" filter-degree" checked="checked" name="degree" data-text="全部學位" value="all">
                 <span class="filter-degree_text">全部</span>
@@ -74,48 +74,47 @@
                 <input type="radio" class=" filter-degree" name="degree" data-text="博士" value="博士">
                 <span class="filter-degree_text">博士</span>
             </label>
-
+            </div>
         </div>
 
+        <div class="condition-row">
+            <div class="condition-title">課程類型 : </div>
+            <div class="conditions">
+                <label>
+                    <input type="radio" class="filter-type" checked="checked" name="type" data-text="全部課程類型" value="all">
+                    <span class="filter_element_text">全部</span>
+                </label>
 
+                <label>
+                    <input type="radio" class="filter-type" name="type" data-text="系必修" value="系必修">
+                    <span class="filter_element_text">系必修</span>
+                </label>
 
-        <div id="grade_group" class="filter_group">
-            <div class="filter_title">課程類型 : </div>
-            <label>
-                <input type="radio" class="filter-type" checked="checked" name="type" data-text="全部課程類型" value="all">
-                <span class="filter_element_text">全部</span>
-            </label>
+                <label>
+                    <input type="radio" class="filter-type" name="type" data-text="選修" value="選修">
+                    <span class="filter_element_text">選修</span>
+                </label>
 
-            <label>
-                <input type="radio" class="filter-type" name="type" data-text="系必修" value="系必修">
-                <span class="filter_element_text">系必修</span>
-            </label>
+                <label>
+                    <input type="radio" class="filter-type" name="type" data-text="必選修" value="必選修">
+                    <span class="filter_element_text">必選修</span>
+                </label>
 
-            <label>
-                <input type="radio" class="filter-type" name="type" data-text="選修" value="選修">
-                <span class="filter_element_text">選修</span>
-            </label>
+                <label>
+                    <input type="radio" class="filter-type" name="type" data-text="共同必修" value="共同必修">
+                    <span class="filter_element_text">共同必修</span>
+                </label>
 
-            <label>
-                <input type="radio" class="filter-type" name="type" data-text="必選修" value="必選修">
-                <span class="filter_element_text">必選修</span>
-            </label>
+                <label>
+                    <input type="radio" class="filter-type" name="type" data-text="不必及格必選修" value="不必及格必選修">
+                    <span class="filter_element_text">不必及格必選修</span>
+                </label>
 
-            <label>
-                <input type="radio" class="filter-type" name="type" data-text="共同必修" value="共同必修">
-                <span class="filter_element_text">共同必修</span>
-            </label>
-
-            <label>
-                <input type="radio" class="filter-type" name="type" data-text="不必及格必選修" value="不必及格必選修">
-                <span class="filter_element_text">不必及格必選修</span>
-            </label>
-
-            <label>
-                <input type="radio" class="filter-type" name="type" data-text="通識教育課程" value="通識教育課程">
-                <span class="filter_element_text">通識教育課程</span>
-            </label>
-
+                <label>
+                    <input type="radio" class="filter-type" name="type" data-text="通識教育課程" value="通識教育課程">
+                    <span class="filter_element_text">通識教育課程</span>
+                </label>
+            </div>
         </div>
     </div>
 </div>

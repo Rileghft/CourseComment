@@ -1,68 +1,143 @@
 @(title: String)
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8">
-    <title>@title</title>
-    <link rel="stylesheet" href="@routes.Assets.versioned("stylesheets/main.css")">
-      <!-- 最新編譯和最佳化的 CSS -->
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.1/css/bootstrap.min.css">
+    <head>
+        <meta charset="UTF-8">
+        <title>@title</title>
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.1/css/bootstrap.min.css">
+        <link rel="stylesheet" href="@routes.Assets.versioned("stylesheets/main.css")">
+        <link rel="stylesheet" href="@routes.Assets.versioned("stylesheets/courseCard.css")">
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.1/js/bootstrap.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/vue/2.1.8/vue.js"></script>
+        <script src="@routes.Assets.versioned("javascripts/filter.js")"></script>
+    </head>
 
-      <!-- all bootstrap need jquery -->
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
-
-      <!-- 最新編譯和最佳化的 JavaScript -->
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.1/js/bootstrap.min.js"></script>
-
-    <script src="@routes.Assets.versioned("javascripts/course_card.js")"></script>
-    <script src="@routes.Assets.versioned("javascripts/filter.js")"></script>
-  </head>
-
-  <body>
-    @nav(title)
-    <div id="main_div" class="center">
-      <div id="jumbotron" >
-        <div id="head-image"></div>
-          @search()
-      </div>
-      <div class="content">
-          <div class="academy-menu center">
-              @department_list()
-          </div>
-          @filter()
-          <div id="courses" class="center">
-
-          </div>
-      </div>
-      @footerBox("")
-    </div>
-  </body>
-
-  <template id="course_card_template">
-    <div class="course_card">
-      <div class="course_name"></div>
-      <div class="course_class">
-        <div class="class_number"></div>
-        <div class="class"></div>
-        <div class="credit"></div>
-      </div>
-      <div class="type"></div>
-      <div class="couse_teacher"></div>
-      <div class="attr"></div>
-      <div class="time_container element_margin">
-        <span class="time"></span>
-      </div>
-      <div class="rating_container element_margin">
-        <div class="rating_text">推薦度 : </div>
-        <div class="rating">
-          <div class="nostar"></div>
+    <body>
+        @nav(title)
+        <div id="main_div" class="center">
+            <div id="jumbotron" >
+                <div id="head-image"></div>
+                @search()
+            </div>
+            <div class="academy-menu center">
+            @department_list()
+            </div>
+            <div class="content">
+                @filter()
+                <div class="course-container">
+                    <div id="courses" class="center" >
+                        <course-card v-for="course in courseData" :course="course"></course-card>
+                    </div>
+                </div>
+            </div>
+            @footerBox("")
         </div>
-      </div>
-      <div class="difficulty_container element_margin">
-        <div class="difficulty_text">難度 : </div>
-        <div class="difficulty"></div>
-      </div>
-      <div class="tag_container element_margin"></div>
-    </div>
-  </template>
+        <template id="course_card_template">
+            <div class="course_card">
+                <div class="course_name"></div>
+                <div class="course_class">
+                    <div class="class_number"></div>
+                    <div class="class"></div>
+                    <div class="credit"></div>
+                </div>
+                <div class="type"></div>
+                <div class="couse_teacher"></div>
+                <div class="attr"></div>
+                <div class="time_container element_margin">
+                    <span class="time"></span>
+                </div>
+                <div class="rating_container element_margin">
+                    <div class="rating_text">推薦度 : </div>
+                    <div class="recommend"></div>
+                </div>
+                <div class="difficulty_container element_margin">
+                    <div class="difficulty_text">難度 : </div>
+                    <div class="difficulty"></div>
+                </div>
+                <div class="tag_container element_margin"></div>
+            </div>
+        </template>
+        <template id="course-card-template">
+            <div class="course-card">
+                <div class="card-row">
+                    <div class="card-column">
+                        <div class="column-content">
+                            <span class="course-name" :title="course.name">{{course.name}}</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="card-row">
+                    <div class="card-column">
+                        <div class="column-content">
+                            <span class="course-id">{{course.courseID}}</span>
+                        </div>
+                    </div>
+                    <div class="card-column">
+                        <div class="column-content">
+                            <span class="class-id">{{course.classID}}</span>
+                            <span>班</span>
+                        </div>
+                    </div>
+                    <div class="card-column">
+                        <div class="column-content">
+                            <span class="credit">{{course.credit}}</span>
+                            <span>學分</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="card-row">
+                    <div class="card-column">
+                        <div class="column-content">
+                            <span class="course-type">{{course.type}}</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="card-row">
+                    <div class="card-column">
+                        <div class="column-content">
+                            <span class="teachers">{{course.teachers.join('、')}}</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="card-row">
+                    <div class="card-column">
+                        <div class="column-content">
+                            <span class="times" :title="times">{{times}}</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="card-row">
+                    <div class="card-column">
+                        <div class="column-content">
+                            <span class="recommend-value">{{recommend.toFixed(1)}}</span>
+                        </div>
+                        <div class="column-content">
+                            <div class="recommend" :style="'width:' + recommend / 5 * 120 + 'px'"></div>
+                        </div>
+                    </div>
+                </div>
+                <div class="card-row">
+                    <div class="card-column">
+                        <div class="column-content">
+                            <span class="difficulty-value">{{difficulty.toFixed(1)}}</span>
+                        </div>
+                        <div class="column-content">
+                            <div class="difficulty" :style="'width:' + difficulty / 5 * 120 + 'px'"></div>
+                        </div>
+                    </div>
+                </div>
+                <div class="card-row">
+                    <div class="card-column">
+                        <div class="column-content">
+                            <ul class="tags">
+                                <li class="tag" v-for="tag in course.tags"><a class="tag-text">{{tag}}</a></li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </template>
+        <script type="text/javascript" src="@routes.Assets.versioned("javascripts/courseCard.js")"></script>
+    </body>
 </html>

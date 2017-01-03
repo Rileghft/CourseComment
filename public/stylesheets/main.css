@@ -163,7 +163,38 @@ div.background-2 {
     background-color: #474e5d;
     color: white;
 }
-/******* 課程資訊顯示區塊 *******/
+/*** 課程推薦度區塊 ***/
+/*放circle區塊的位置設定*/
+.svg.radial-progress {
+  position: relative;
+  display: inline-block;
+}
+
+svg {
+  transform: rotate(270deg);
+}
+
+circle {
+  stroke-width: 12;
+  fill: transparent;
+  transform: rotate(0.1deg); // to fix Firefox
+}
+
+.radial-progress-background {
+  stroke: #1abc9c;
+}
+
+.radial-progress-cover {
+  stroke: #ccc;
+  stroke-width: 13;
+  border: 12px solid red;
+}
+
+.radial-progress-center {
+  fill: white;
+}
+/*** END ***/
+/*** 課程資訊顯示區塊 ***/
 div p.course_info {
     color: white;
     font-size: 24px;
@@ -172,9 +203,9 @@ div p.course_info {
 div ul li {
     display: inline;
 }
-/************ END ************/
+/*** END ***/
 
-/******** 課程資訊Tab頁面 ********/
+/*** 課程資訊Tab頁面 ***/
 /*按下tab後顯示的區塊*/
 .tab_content {
     display:none;
@@ -182,7 +213,7 @@ div ul li {
     border: 1px solid #ccc;
     border-top: none;
 }
-/************ END ************/
+/*** END ***/
 /************** END ***************/
 
 

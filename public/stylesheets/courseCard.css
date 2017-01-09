@@ -1,18 +1,19 @@
-
+@keyframes card-appear {
+    from {opacity: 0}
+    to {opacity: 1}
+}
 .course_card{
     display: inline-block;
     background-color: #f9f6f0;
     margin: 5px 5px 5px 5px;
-    border-style:solid;
-    border-width: thin;
-    border-color: #abb3b9;
-
-    transition-timing-function: ease-in;
-    -webkit-transition: box-shadow 0.5s; /* Safari */
-    transition: box-shadow 0.5s;
+    border: thin solid #abb3b9;
+    animation: card-appear 2s;
 }
 
 .course_card:hover{
+    transition-timing-function: ease-in;
+    -webkit-transition: box-shadow 0.5s; /* Safari */
+    transition: box-shadow 0.5s;
     box-shadow: 5px 5px 5px grey;
 }
 
@@ -166,6 +167,7 @@
     display: block;
     position: relative;
     list-style-type: none;
+    font-size: 14px;
     border-top: dashed darkgrey 1px;
     padding: 5px 0 5px 0;
 }
@@ -173,7 +175,6 @@
 .tag {
     background-color: limegreen;
     float: left;
-    font-size: 0.7em;
     margin-left: 20px;
     border-top-right-radius: 2px;
     border-bottom-right-radius: 2px;
@@ -201,11 +202,11 @@
 .tag-text:after {
     content: '';
     position: absolute;
-    top: 0.9em;
-    left: 1.3em;
+    top: 13px;
+    left: 20px;
     float: left;
-    width: 0.4em;
-    height: 0.4em;
+    width: 5px;
+    height: 5px;
     border-radius: 3px;
     background-color: white;
     box-shadow: -1px -1px 2px limegreen;

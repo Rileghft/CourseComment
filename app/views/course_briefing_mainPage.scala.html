@@ -1,0 +1,36 @@
+@(title: String)
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>@title</title>
+    <link rel="stylesheet" href="@routes.Assets.versioned("stylesheets/main.css")">
+    <!-- 最新編譯和最佳化的 CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.1/css/bootstrap.min.css">
+
+    <!-- all bootstrap need jquery -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+
+    <!-- 最新編譯和最佳化的 JavaScript -->
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.1/js/bootstrap.min.js"></script>
+
+    <script src="@routes.Assets.versioned("javascripts/course_information.js")"></script>
+</head>
+<body>
+@nav(title)
+<!--目前-->
+<div class="container-fluid background-1">
+
+</div>
+
+<!--選擇-->
+<div class="container-fluid background-2">
+    <div class="graph_card">
+        <img src="http://image.makebizeasy.com/upload/5/08/508e501be520c6bc6b7cd96a3177adfa.jpg" alt="Avatar" style="width:100%">
+        <div class="graph_describe_container">
+            <h4><b>柱狀圖</b><h4>
+        </div>
+</div>
+@footerBox("")
+</body>
+</html>

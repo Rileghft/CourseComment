@@ -216,4 +216,22 @@ div ul li {
 /*** END ***/
 /************** END ***************/
 
+/************ 課程簡報頁面 ************/
+/***** 卡片 *****/
+.graph_card {
+    width: 30%;
+    box-shadow: 0.4px 8px 0 rgba(0,0,0,0.2);
+    transition: 0.3s;
+}
+
+.graph_card:hover {
+    box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2);
+}
+
+.graph_describe_container {
+    background-color: white;
+    color: black;
+    padding: 2px 16px;
+}
+/********** END **********/
 

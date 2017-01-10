@@ -1,0 +1,33 @@
+/*為了不讓索引列遮到中間區*/
+.container-fluid {
+    padding: 70px;
+}
+
+/********** 課程資訊頁面 ************/
+div.background-1 {
+    background-color: white;
+}
+
+div.background-2 {
+    background-color: #474e5d;
+    color: white;
+}
+/******* 課程資訊顯示區塊 *******/
+div p.course_info {
+    color: white;
+    font-size: 24px;
+}
+
+div ul li {
+    display: inline;
+}
+/************ END ************/
+
+/******** 課程資訊Tab頁面 ********/
+.tab_content {
+    display:none;
+    padding: 12px 24px;
+    border: 1px solid #ccc;
+    border-top: none;
+}
+/************** END ***************/

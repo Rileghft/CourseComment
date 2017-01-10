@@ -20,9 +20,9 @@ public class HomeController extends Controller {
         return ok(mainPage.render("課程評論系統"));
     }
 
-    public Result showStudentQuestionnaire() { return ok(student_questionnaire_mainPage.render("學生評論")); }
+    public Result showStudentQuestionnaire() { return ok(questionnaire_stu.render("學生評論")); }
 
-    public Result showCourseInformation() { return ok(course_information_mainPage.render("課程資訊")); }
+    public Result showCourseInformation() { return ok(courseInfo.render("課程資訊")); }
 
     public Result showCourseBriefing() { return ok(course_briefing_mainPage.render("課程簡報")); }
 }

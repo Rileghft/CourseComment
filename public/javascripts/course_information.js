@@ -20,7 +20,7 @@ function openTab(evt, tabName) {
         evt.currentTarget.className += " active";
     }
 
-// 推薦度circle
+// 推薦度circle(應該以另外寫function並在此呼叫的形式)
 window.onload = function(maxScore, getScore) {
     maxScore = 5; getScore = 3.1; // 課堂分數作為參數傳入或之後在此function中做讀該課程資料的動作
     var i, radius = 100;
@@ -49,4 +49,18 @@ window.onload = function(maxScore, getScore) {
         elements[0].setAttribute("stroke-dashoffset", offset);
         ++currentCount;
     }, 30);
+
+    drawBars();
+}
+
+function drawBars() {
+    var score = [300, 80, 20, 10, 40];
+    var colors = ['#63b93e', '#ffc31d', '#e57a44', '#e94f37', '#a31621'];
+    var scoreCanvas = document.getElementById("scoreCanvas");
+    var canvasContext = scoreCanvas.getContext("2d");
+    var i;
+    for(i = 0; i < score.length; ++i) {
+        canvasContext.fillStyle = colors[i];
+        canvasContext.fillRect(0, 100+i*30, score[i], 25);
+    }
 }

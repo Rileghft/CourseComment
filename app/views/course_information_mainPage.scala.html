@@ -20,13 +20,18 @@
 @nav(title)
 <!--推薦度-->
 <div class="container-fluid background-1">
-    <div class="svg radial-progress">
+    <div class="svg radial-progress" style="float:left">
         <svg width="300" height="300">
             <circle class="radial-progress-background" cx="150" cy="150" fill="transparent"/>
             <circle class="radial-progress-cover" cx="150" cy="150" fill="transparent"/>
             <circle class="radial-progress-center" cx="150" cy="150" fill="transparent"/>
             Sorry, your browser doesn't support inline SVG.
         </svg>
+    </div>
+    <div class="col-md-5 col-md-offset-1">
+        <canvas id="scoreCanvas" width="500" height="400">
+
+        </canvas>
     </div>
 </div>
 

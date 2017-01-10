@@ -1,4 +1,8 @@
-@(title: String)
+@import play.libs.Json
+@import play.api.libs.json.JsValue
+@import play.api.libs.json.JsObject
+@import org.bson.Document
+@(title: String, data: Document)
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -39,8 +43,8 @@
 <!--課程資訊-->
 <div class="container-fluid background-2">
     <div class="col-md-4 col-md-offset-1">
-        <p class="course_info">課號 : AD115</p>
-        <p class="course_info">開課系所 : 藝術與設計學系學士班</p>
+        <p class="course_info">課號 : @data.getString("courseID")</p>
+        <p class="course_info">開課系所 : @data.getString("deptName")</p>
         <p class="course_info">授課教師 : 陳冠華(KUAN-HUA CHEN)</p>
     </div>
     <div class="col-md-4">

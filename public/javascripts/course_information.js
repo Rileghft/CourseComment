@@ -22,8 +22,8 @@ function openTab(evt, tabName) {
 
 // 推薦度circle(應該以另外寫function並在此呼叫的形式)
 window.onload = function(maxScore, getScore) {
-    maxScore = 5; getScore = 3.1; // 課堂分數作為參數傳入或之後在此function中做讀該課程資料的動作
-    var i, radius = 100;
+    maxScore = 5; getScore = 4.6; // 課堂分數作為參數傳入或之後在此function中做讀該課程資料的動作
+    var i, radius = 80;
     var circle = 2 * radius * Math.PI;
     var elements = document.getElementsByTagName("circle");
 
@@ -33,7 +33,7 @@ window.onload = function(maxScore, getScore) {
         elements[i].setAttribute("stroke-dasharray", circle);
     }
     elements = document.getElementsByClassName("radial-progress-center");
-    elements[0].setAttribute('r', (radius - 5));
+    elements[0].setAttribute('r', (radius - 10));
 
     var currentCount = 1;
     var maxCount = 36; // 將一個圓分為幾個part.
@@ -61,6 +61,6 @@ function drawBars() {
     var i;
     for(i = 0; i < score.length; ++i) {
         canvasContext.fillStyle = colors[i];
-        canvasContext.fillRect(0, 100+i*30, score[i], 25);
+        canvasContext.fillRect(0, 80+i*30, score[i], 25);
     }
 }

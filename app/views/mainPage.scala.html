@@ -16,25 +16,26 @@
 
     <body>
         @nav(title)
-        <div id="main_div" class="center">
-            <div id="jumbotron" >
-                <div id="head-image"></div>
-                @search()
-            </div>
-            <div class="academy-menu center">
-            @department_list()
-            </div>
-            <div class="content">
-                @filter()
-                <div class="course-container">
-                    <div id="courses" class="center" >
-                        <course-card v-for="course in courseData" :course="course"></course-card>
-                    </div>
-                </div>
-            </div>
-            @footerBox("")
+    <div id="main_div" class="center">
+        <div id="jumbotron" >
+            <div id="head-image"></div>
+            @search()
         </div>
-        <template id="course-card-template">
+        <div class="academy-menu center">
+        @department_list()
+        </div>
+        <div class="content">
+            @filter()
+        <div class="course-container">
+            <div id="courses" class="center" >
+                <course-card v-for="course in courseData" :course="course"></course-card>
+            </div>
+        </div>
+        </div>
+        @footerBox("")
+    </div>
+    <template id="course-card-template">
+        <transition name="appear">
             <div class="course-card">
                 <div class="card-row">
                     <div class="card-column">
@@ -113,7 +114,8 @@
                     </div>
                 </div>
             </div>
-        </template>
-        <script type="text/javascript" src="@routes.Assets.versioned("javascripts/courseCard.js")"></script>
+        </transition>
+    </template>
+    <script type="text/javascript" src="@routes.Assets.versioned("javascripts/courseCard.js")"></script>
     </body>
 </html>

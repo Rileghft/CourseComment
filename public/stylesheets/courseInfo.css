@@ -127,3 +127,36 @@ div ul li {
     width:650px;
     height: 200px;
 }
+
+/******* Questionnaire progress field *******/
+button.each_question {
+    background-color: #eee;
+    color: #444;
+    cursor: pointer;
+    padding: 18px;
+    width: 100%;
+    text-align: left;
+    border: none;
+    outline: none;
+    transition: 0.4s;
+}
+
+button.each_question.active, button.each_question:hover {
+    background-color: #ddd;
+}
+
+div.question_content {
+    padding: 0 18px;
+    background-color: white;
+    display: -webkit-inline-box;
+}
+
+div.question_content.show {
+    display: block;
+}
+
+div.question_content p {
+    font-size: 18px;
+    background-color: white;
+}
+/******* END *******/

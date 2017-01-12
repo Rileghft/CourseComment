@@ -62,7 +62,6 @@ div ul li {
     font-size: 16px;
 }
 
-/*test*/
 .rate {
     border: 1px solid #cccccc;
     float: left;
@@ -123,3 +122,8 @@ div ul li {
 .skull:not(:checked) > label:hover, .skull:not(:checked) > label:hover ~ label { color: #a8a5a8; }
 
 .skull > input:checked + label:hover, .skull > input:checked + label:hover ~ label, .skull > input:checked ~ label:hover, .skull > input:checked ~ label:hover ~ label, .skull > label:hover ~ input:checked ~ label { color: #979594; }
+
+#comment{
+    width:650px;
+    height: 200px;
+}

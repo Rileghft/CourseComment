@@ -19,30 +19,45 @@
     <div class="container-fluid">
         <div class="row content">
             <div class="col-sm-3">
-                <div class="col-xs-12">
-                    <h4>課程資訊</h4>
-                </div>
-                <div class="col-xs-12">
-                    <h4>填答進度</h4>
-                </div>
+                <!--填寫問卷的課程資訊-->
+                <article class="col-xs-12">
+                    <h2>課程資訊</h2>
+                    <h4>課號</h4><p>CS106</p><br>
+                    <h4>課名</h4><p>程式設計(一)</p><br>
+                    <h4>學期</h4><p>1051</p><br>
+                </article>
+                <!--目前填答的進度-->
+                <article class="col-xs-12">
+                    <h2>填答進度</h2>
+                    <button class="each_question">該課程上課速度?</button>
+                    <div class="question_content">
+                        <p>太快</p>
+                        <div style="position: absolute; button: 0px; right: 18px">
+                            <button style="border: none; background-color: white" type="button">修改</button>
+                        </div>
+                    </div>
+
+                    <button class="each_question">該課程上課深度?</button>
+                    <div class="question_content">
+                        <p>過深</p>
+                        <div style="position: absolute; button: 0px; right: 18px">
+                            <button style="border: none; background-color: white"  type="button">修改</button>
+                        </div>
+                    </div>
+
+                    <button class="each_question">對於計分方式的想法?</button>
+                    <div class="question_content">
+                        <p>沒有意見</p>
+                        <div style="position: absolute; button: 0px; right: 18px">
+                            <button style="border: none; background-color: white"  type="button">修改</button>
+                        </div>
+                    </div>
+                </article>
             </div>
             <div class="col-sm-9">
                 <h4>問卷</h4>
                 <hr>
-                <h2>對於該教師上課速度</h2><br><br>
-                <div class="answer_field">
-                    <form>
-                        <input type="radio" ><span class="radio_text">太快</span><br><br>
-                        <input type="radio" ><span class="radio_text">略快</span><br><br>
-                        <input type="radio" checked><span class="radio_text">正常</span><br><br>
-                        <input type="radio" ><span class="radio_text">略慢</span><br><br>
-                        <input type="radio" ><span class="radio_text">太慢</span><br><br>
-                    </form>
-                </div>
-                <br><br>
-                <!--
-                <button type="submit" class="btn">下一題</button>
-                -->
+
                 <br><br>
                 <h2>課程難度</h2>
                 <div class="answer_field">
@@ -59,10 +74,8 @@
                         <label for="skull1" title="text">1 skull</label>
                     </div>
                 </div>
-                <br>
-                <br>
-                <br>
-                <br>
+                <br><br>
+                <br><br>
                 <h2>推薦程度</h2>
                 <div class="answer_field">
                     <div class="rate">
@@ -78,7 +91,12 @@
                         <label for="star1" title="text">1 star</label>
                     </div>
                 </div>
-
+                <br><br>
+                <br><br>
+                <h2>評論</h2>
+                <textarea id="comment"></textarea>
+                <br>
+                <button id="comment_submit">送出</button>
             </div>
         </div>
     </div>

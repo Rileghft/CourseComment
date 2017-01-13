@@ -1,92 +1,200 @@
-@import play.libs.Json
-@import play.api.libs.json.JsValue
-@import play.api.libs.json.JsObject
-@import org.bson.Document
-@(title: String, data: Document)
+@import com.fasterxml.jackson.databind.JsonNode
+@(title: String)
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>@title</title>
-    <link rel="stylesheet" href="@routes.Assets.versioned("stylesheets/courseInfo.css")">
-    <!-- 最新編譯和最佳化的 CSS -->
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.1/css/bootstrap.min.css">
+    <head>
+        <meta charset="UTF-8">
+        <title>@title</title>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.1/css/bootstrap.min.css">
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.1/js/bootstrap.min.js"></script>
+        <link rel="stylesheet" href="@routes.Assets.versioned("stylesheets/courseInfo.css")">
+    </head>
+    <body>
+        @nav(title)
 
-    <!-- all bootstrap need jquery -->
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+        <div class="container">
+            <div class="form-box">
+                <div id="courseDetail">
+                    <div class="course">
+                        <div class="title">
+                            <span class="course-type"></span>
+                            <span class="course-name">課程名稱遺失</span>
+                            <div class="attr-container">
+                                <ul>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                    <hr />
+                    <div class="info-container">
+                        <div class="info">
+                            <div class="teachers">
+                                <span class="info-title">教師:</span>
+                                <span>教師姓名遺失</span>
+                            </div>
+                        </div>
+                        <div class="info">
+                            <span class="info-title">推薦度:</span>
+                            <span class="recommend">沒有統計資料</span>
+                        </div>
+                        <div class="info">
+                            <span class="info-title">系所:</span>
+                            <span class="dept">學系 年級</span>
+                        </div>
+                        <div class="info">
+                            <span class="info-title">難度:</span>
+                            <span class="difficulty">沒有統計資料</span>
+                        </div>
+                        <div class="info">
+                            <span class="info-title">學分:</span>
+                            <span class="credit"></span>
+                        </div>
+                        <div class="info">
+                            <div class="place">
+                                <span class="info-title">教室:</span>
+                                <span>未指定</span>
+                            </div>
+                        </div>
+                        <div class="info">
+                            <div class="pre-requisite">
+                                <span class="info-title">先修課程:</span>
+                                <span>無</span>
+                            </div>
+                        </div>
+                        <div class="info">
+                            <div class="time">
+                                <span class="info-title">上課時間:</span>
+                                <span>未指定</span>
+                            </div>
+                        </div>
+                    </div>
+                    <hr />
+                    <div class="introduce">
+                        <h1>課程介紹</h1>
+                        <p>教師尚未填寫教學介紹</p>
+                    </div>
+                    <div class="teach-approach">
+                        <h1>教學方式</h1>
+                        <p>教師尚未填寫教學方式</p>
+                    </div>
+                    <hr />
+                    <div class="note">
+                        <p>無</p>
+                    </div>
+                    <div class="tags">
+                        <span>標籤:</span>
+                        <div class="tag"></div>
+                    </div>
+                </div>
+            </div>
+            <div class="tab-box">
+                <ul class="nav nav-tabs">
+                    <li class="active"><a class="tab_links" data-toggle="tab" href="#outline">課程大綱</a></lic>
+                    <li><a class="tab_links" data-toggle="tab" href="#course-obj">課程目標</a></li>
+                    <li><a class="tab_links" data-toggle="tab" href="#grade">評分方式</a></li>
+                    <li><a class="tab_links" data-toggle="tab" href="#textbook">參考書籍</a></li>
+                    <li><a class="tab_links" data-toggle="tab" href="#office-hour">Office Hour</a></li>
+                    <li><a class="tab_links" data-toggle="tab" href="#comment-teacher">教師評論</a></li>
+                </ul>
 
-    <!-- 最新編譯和最佳化的 JavaScript -->
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.1/js/bootstrap.min.js"></script>
+                <div class="tab-content">
+                    <div id="outline" class="tab-pane in active">
+                        <table class="table table-responsive table-striped">
+                            <thead>
+                                <tr>
+                                    <th class="col-md-1">編號</th>
+                                    <th>項目</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div id="course-obj" class="tab-pane">
+                        <h3>學生目標</h3>
+                        <table id="stu-obj" class="table table-responsive table-striped">
+                            <thead>
+                                <tr>
+                                    <th class="col-md-1">編號</th>
+                                    <th>項目</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                            </tbody>
+                        </table>
+                        <h3>系所目標</h3>
+                        <table id="dept-obj" class="table table-responsive table-striped">
+                            <thead>
+                                <tr>
+                                    <th class="col-md-1">編號</th>
+                                    <th>項目</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div id="grade" class="tab-pane">
+                        <h3>主要評分標準</h3>
+                        <table id="scoring" class="table table-responsive table-striped">
+                            <thead>
+                                <tr>
+                                    <th class="col-md-1">編號</th>
+                                    <th>項目</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                            </tbody>
+                        </table>
+                        <h3>其他評分標準</h3>
+                        <table id="other-scoring" class="table table-responsive table-striped">
+                            <thead>
+                                <tr>
+                                    <th class="col-md-1">編號</th>
+                                    <th>項目</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div id="textbook" class="tab-pane">
+                        <table id="book" class="table table-responsive table-striped">
+                            <thead>
+                                <tr>
+                                    <th class="col-md-1">編號</th>
+                                    <th class="col-md-4">名稱</th>
+                                    <th class="col-md-1">資源類型</th>
+                                    <th class="col-md-1">類別</th>
+                                    <th class="col-md-1">語言</th>
+                                    <th class="col-md-1">連結</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div id="office-hour" class="tab-pane">
+                        <p>教師尚未指定Office Hour.</p>
+                    </div>
+                    <div id="comment-teacher" class="tab-pane">
+                        <p>目前授課教師還為對此課程評論</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="container">
+            <div class="comments">
+                <div class="comment-pane">
+                    <h1>學生評論</h1>
+                    <button type="button" id="write-comment" class="btn btn-primary">撰寫評論</button>
+                </div>
+                <hr />
+            </div>
+        </div>
 
-    <script src="@routes.Assets.versioned("javascripts/course_information.js")"></script>
-</head>
-<body>
-@nav(title)
-<!--推薦度-->
-<div class="container-fluid background-1">
-    <div class="svg radial-progress col-md-offset-1" style="float:left">
-        <svg width="250" height="300">
-            <circle class="radial-progress-background" cx="125" cy="175" fill="transparent"/>
-            <circle class="radial-progress-cover" cx="125" cy="175" fill="transparent"/>
-            <circle class="radial-progress-center" cx="125" cy="175" fill="transparent"/>
-            <text fill="#000000" x="125" y="75" font-size="64" transform="translate(180) rotate(90,0,0)">4.6</text>
-            Sorry, your browser doesn't support inline SVG.
-        </svg>
-    </div>
-    <div class="col-md-5 col-md-offset-1">
-        <canvas id="scoreCanvas" width="500" height="250">
-
-        </canvas>
-    </div>
-</div>
-
-<!--課程資訊-->
-<div class="container-fluid background-2">
-    <div class="col-md-4 col-md-offset-1">
-        <p class="course_info">課號 : @data.getString("courseID")</p>
-        <p class="course_info">開課系所 : @data.getString("deptName")</p>
-        <p class="course_info">授課教師 : 陳冠華(KUAN-HUA CHEN)</p>
-    </div>
-    <div class="col-md-4">
-        <p class="course_info">課程名稱 : 設計概論(一)</p>
-        <p class="course_info">課程類型 : 系必修</p>
-        <p class="course_info">課程備註 : 英語授課</p>
-    </div>
-</div>
-
-<!--課程相關資訊(大綱、評論等)-->
-<div class="container-fluid background-1">
-    <ul class="nav nav-tabs">
-        <li><a class="tab_links" onclick="openTab(event, 'outline')">課程大綱</a></li>
-        <li><a class="tab_links" onclick="openTab(event, 'grade')">評分方式</a></li>
-        <li><a class="tab_links" onclick="openTab(event, 'teacher_comment')">教師評論</a></li>
-        <li><a class="tab_links" onclick="openTab(event, 'student_comment')">學生評論</a></li>
-    </ul>
-
-    <!-- 預設為課程大綱 -->
-    <div id="outline" class="tab_content" style="display: block;">
-        <h3>課程大綱</h3>
-        <p><br>養成正確的設計態度及觀念，開發潛藏的原始創造力。建立設計的基礎能力，並未進階的設計訓練做完整的準備。<br><br>指定作業(一)發表「30分鐘自我介紹」<br>夢想社區參訪&參加夢想嘉年華遊行、工作營<br>「我」的形與神–從封神榜談起<br>
-        指定作業(二)「我」公仔–「望」成果展出<br>我的夢與記憶<br>指定作業(三)「我」公仔–「平面」成果展出<br>「我」的心與性–從納布可夫的《說吧，記憶》談起<br>
-        指定作業(四)「我」公仔–「切」I成果展出<br>我的家與鄉<br>指定作業(五)「我」公仔–「切」II成果展出<br>「我」是心靈的存在也是空間的佔有–從侯孝賢的「童年往事」談起<br>
-        指定作業(六)「我」公仔–組合I<br>指定作業(七)「我」–組合II<br>總結與檢討期末末：「我」公仔–組合之成果展</p>
-    </div>
-
-    <div id="grade" class="tab_content">
-        <h3>授課方式</h3>
-        <p><br>1.講授、討論與作業製作<br>2.人文閱讀、電影/音樂賞析<br>3.「夢想嘉年華」校外服務學習+國際創意工作營<br><br></p>
-    </div>
-
-    <div id="teacher_comment" class="tab_content">
-        <h3>教師評論</h3>
-        <p>目前授課教師還為對此課程評論</p>
-    </div>
-
-    <div id="student_comment" class="tab_content">
-        <h3>學生評論</h3>
-        <p>介紹...............</p>
-    </div>
-</div>
-@footerBox("")
-</body>
+        @footerBox("")
+        <script src="@routes.Assets.versioned("javascripts/courseInfo.js")"></script>
+    </body>
 </html>

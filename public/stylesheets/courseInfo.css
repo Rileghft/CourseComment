@@ -1,38 +1,131 @@
-/*為了不讓索引列遮到中間區*/
-.container-fluid {
-    padding: 70px;
+body {
+    background-color: #e8e8e8;
 }
 
-/********** 課程資訊頁面 ************/
-div.background-1 {
+.container {
+    background-color: transparent;
+    padding: 0;
+    top: 300px;
+}
+
+
+.form-box {
+    top: 100px;
+}
+
+#courseDetail{
+    display: block;
+    position: relative;
+    padding: 50px;
     background-color: white;
+    border: solid lightgrey 1px;
 }
 
-div.background-2 {
-    background-color: #474e5d;
-    color: white;
-}
-/******* 課程資訊顯示區塊 *******/
-div p.course_info {
-    color: white;
-    font-size: 24px;
+.course {
+    margin: auto;
+    text-align: center;
 }
 
-div ul li {
-    display: inline;
+.title {
+    margin: 0 auto;
 }
-/************ END ************/
+.course-type {
+    position: absolute;
+    padding: 10px;
+    font-size: 14px;
+    margin-left: -50px;
+    background-color: limegreen;
+    color: white;
+    border-radius: 20px;
+}
+.course-name {
+    font-size: 7em;
+    text-align: center;
+    margin: 0 auto;
+}
+
+.attr-container ul {
+    list-style-type: none;
+    text-align: center;
+
+}
+
+.attr-container li {
+    display: inline-block;
+    padding: 10px;
+}
+.attr-container li:before {
+    content: '*';
+}
+.info-container {
+    display: flex;
+    flex: 1;
+    flex-flow: row wrap;
+    justify-content: space-around;
+}
+
+.info {
+    width: 50%;
+    font-size: 2em;
+}
+
+.info span {
+    display: inline-block;
+}
+.info-title {
+    min-width: 130px;
+}
+
+.tags * {
+    display: inline-block;
+}
 
 /******** 課程資訊Tab頁面 ********/
-.tab_content {
-    display:none;
-    padding: 12px 24px;
-    border: 1px solid #ccc;
-    border-top: none;
+.tab-box {
+    margin-top: 10px;
+}
+
+.tab-pane {
+    background-color: white;
+    height: 600px;
+    padding: 50px;
+    margin: 0;
+    overflow-y: scroll;
+}
+
+#outline table {
+    counter-reset: serial-num;
+}
+
+#outline tr:first-child:before {
+    counter-increment: serial-num;
+    content: counter(serial-num, "")
 }
 /************** END ***************/
 
+/***** 學生評論 *****/
+.comments {
+    background-color: white;
+    min-height: 500px;
+    margin-top: 50px;
+    padding: 50px;
+}
 
+.comment-pane {
+    min-height: 50px;
+}
+.comment-pane h1 {
+    display: inline-block;
+    margin: 0px;
+    float: left;
+}
+#write-comment {
+    display: inline-block;
+    font-size: 2em;
+    float: right;
+    padding: 5px;
+}
+/************** END ***************/
 /***** footerBox in course_info page *****/
 #footerBox{
     width:100%;

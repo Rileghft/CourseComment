@@ -15,6 +15,8 @@ GET     /assets/*file               controllers.Assets.versioned(path="/public",
 # reference to studentQuestionnaire page
 GET     /studentQuestionnaire       controllers.HomeController.showStudentQuestionnaire
 # reference to courseInformation page
-GET     /courseInformation          controllers.HomeController.showCourseInformation
+GET     /courseDetail               controllers.HomeController.showCourseInformation
 # reference to courseBriefing page
 GET     /courseBriefing             controllers.HomeController.showCourseBriefing
+# course detail api
+POST    /api/courseDetail           controllers.CourseDetailQuery.getCourseDetail

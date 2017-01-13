@@ -2,9 +2,13 @@
  * Created by fnsne on 2016/12/22.
  */
 
+var year = getYearSemester()[0];
+var sem = getYearSemester()[1];
+var deptType = 'FC';
+
 var filter_data = {
-    'year': getYearSemester()[0],
-    'sem': getYearSemester()[1],
+    'year': year,
+    'sem': sem,
     'deptType': "FC",
     'grade': 0,
     'degree': "all",
@@ -18,6 +22,8 @@ var degreeMap = {
     'all': 'all'
 }
 document.addEventListener('DOMContentLoaded', function(){
+    $('#sem_year_select option[value="'+year+'"]').prop('selected', 'selected');
+    $('#semester_select option[value="'+sem+'"]').prop('selected', 'selected');
     $('.filter-grade').click(function () {
         let $box = $(this);
         let gradeName = $box.data("text");
@@ -64,8 +70,9 @@ document.addEventListener('DOMContentLoaded', function(){
 
     $('#semester_select').change(function () {
         let $sem = $(this);
-        let sem = $sem.val();
-        filter_data.sem = parseInt(sem);
+        let sem = parseInt($sem.val());
+        filter_data.sem = sem;
+        window.sem = sem;
         $('#semester_text').prop('innerText', "第"+sem+"學期");
         queryFilteredCourseCard();
     });
@@ -82,11 +89,11 @@ document.addEventListener('DOMContentLoaded', function(){
         let year = getYearSemester()[0];
         let sem = getYearSemester()[1];
         filter_data.year =year;
+        window.year = year;
         $('#sem_year_select option[value="'+year+'"]').prop('selected', 'selected');
-        $('#semester_year_text').prop('innerText', year+"學年");
         filter_data.sem = sem;
+        window.sem = sem;
         $('#semester_select option[value="'+sem+'"]').prop('selected', 'selected');
-        $('#semester_text').prop('innerText', "第"+sem+"學期");
 
         queryFilteredCourseCard();
     });

@@ -1,11 +1,6 @@
 /**
  * Created by 楊舜宇 on 2017/1/2.
  */
-var year = getYearSemester()[0];
-var sem = getYearSemester()[1];
-var deptType = 'FC';
-
-var courseData = [];
 
 Vue.component('course-card', {
     template: "#course-card-template",
@@ -26,6 +21,9 @@ Vue.component('course-card', {
         },
         difficulty: function () {
             return this.course.difficulty;
+        },
+        link: function () {
+            return `/courseDetail?year=${year}&sem=${sem}&courseID=${this.course.courseID}&class=${this.course.classID}`;
         }
     }
 });

@@ -8,6 +8,7 @@
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.1/css/bootstrap.min.css">
         <link rel="stylesheet" href="@routes.Assets.versioned("stylesheets/main.css")">
         <link rel="stylesheet" href="@routes.Assets.versioned("stylesheets/courseCard.css")">
+        <link rel="stylesheet" href="@routes.Assets.versioned("stylesheets/pageComponent.css")">
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
         <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.1/js/bootstrap.min.js"></script>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/vue/2.1.8/vue.js"></script>
@@ -40,7 +41,7 @@
                 <div class="card-row">
                     <div class="card-column">
                         <div class="column-content">
-                            <span class="course-name" :title="course.name">{{course.name}}</span>
+                            <a class="course-name" :title="course.name" :href="link">{{course.name}}</a>
                         </div>
                     </div>
                 </div>

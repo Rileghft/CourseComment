@@ -21,72 +21,6 @@
     animation: card-disappear .3s;
     opacity: 0;
 }
-.course_card{
-    display: inline-block;
-    background-color: #f9f6f0;
-    margin: 5px 5px 5px 5px;
-    border: thin solid #abb3b9;
-    animation: card-appear 2s;
-}
-
-.course_card:hover{
-    transition-timing-function: ease-in;
-    -webkit-transition: box-shadow 0.5s; /* Safari */
-    transition: box-shadow 0.5s;
-    box-shadow: 5px 5px 5px grey;
-}
-
-#footerBox{
-    width:100%;
-    height: 100px;
-    background-color: #a3551d;
-    text-align: center;
-    padding-top: 20px;
-}
-
-#footerDiscript{
-    font-size:13px;
-    color: #eeeeee;
-    line-height:20px;
-}
-
-#footerDiscript a{
-    color: #eeeeee;
-    padding: 3px;
-}
-
-
-
-.class_number {
-    display: inline-block;
-    margin: 0px 10px 0px 10px ;
-}
-
-.class{
-    display: inline-block;
-    margin: 0px 10px 0px 10px ;
-}
-
-#main_div{
-    background: #cedae0;
-}
-
-
-.rating_text{
-    display: inline-block;
-}
-.difficulty_text{
-    float: left;
-}
-.time_container{
-    text-align: left;
-}
-.rating_container{
-    text-align: left;
-}
-.difficulty_container{
-    text-align: left;
-}
 
 .course-container {
     width:80%;
@@ -155,6 +89,10 @@
     white-space: nowrap;
     text-overflow: ellipsis;
     overflow: hidden;
+}
+
+.course-name:hover {
+    text-decoration: none;
 }
 
 .times:hover, .course-name:hover {

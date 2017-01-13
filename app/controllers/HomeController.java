@@ -22,7 +22,7 @@ public class HomeController extends Controller {
 
     public Result showStudentQuestionnaire() { return ok(questionnaire_stu.render("學生評論")); }
 
-    public Result showCourseInformation() { return ok(courseInfo.render("課程資訊", CourseDetailQuery.getCourseDetail(105, 1, "CS205"))); }
+    public Result showCourseInformation() { return ok(courseInfo.render("課程資訊")); }
 
     public Result showCourseBriefing() { return ok(course_briefing_mainPage.render("課程簡報")); }
 }

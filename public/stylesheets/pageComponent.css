@@ -1,7 +1,8 @@
+/***** footerBox in course_info page *****/
 #footerBox{
     width:100%;
     height: 100px;
-    background-color: #a3551d;
+    background-color: #2f485b;
     text-align: center;
     padding-top: 20px;
 }
@@ -16,3 +17,5 @@
     color: #eeeeee;
     padding: 3px;
 }
+/***** END *****/
+

@@ -4,7 +4,6 @@
 <head>
     <meta charset="UTF-8">
     <title>@title</title>
-    <link rel="stylesheet" href="@routes.Assets.versioned("stylesheets/courseInfo.css")">
     <!-- 最新編譯和最佳化的 CSS -->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.1/css/bootstrap.min.css">
 
@@ -13,51 +12,15 @@
 
     <!-- 最新編譯和最佳化的 JavaScript -->
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.1/js/bootstrap.min.js"></script>
+    <link rel="stylesheet" href="@routes.Assets.versioned("stylesheets/questionnaire_stu.css")">
+    <link rel="stylesheet" href="@routes.Assets.versioned("stylesheets/pageComponent.css")">
 </head>
 <body>
     @nav(title)
-    <div class="container-fluid">
-        <div class="row content">
-            <div class="col-sm-3">
-                <!--填寫問卷的課程資訊-->
-                <article class="col-xs-12">
-                    <h2>課程資訊</h2>
-                    <h4>課號</h4><p>CS106</p><br>
-                    <h4>課名</h4><p>程式設計(一)</p><br>
-                    <h4>學期</h4><p>1051</p><br>
-                </article>
-                <!--目前填答的進度-->
-                <article class="col-xs-12">
-                    <h2>填答進度</h2>
-                    <button class="each_question">該課程上課速度?</button>
-                    <div class="question_content">
-                        <p>太快</p>
-                        <div style="position: absolute; button: 0px; right: 18px">
-                            <button style="border: none; background-color: white" type="button">修改</button>
-                        </div>
-                    </div>
-
-                    <button class="each_question">該課程上課深度?</button>
-                    <div class="question_content">
-                        <p>過深</p>
-                        <div style="position: absolute; button: 0px; right: 18px">
-                            <button style="border: none; background-color: white"  type="button">修改</button>
-                        </div>
-                    </div>
-
-                    <button class="each_question">對於計分方式的想法?</button>
-                    <div class="question_content">
-                        <p>沒有意見</p>
-                        <div style="position: absolute; button: 0px; right: 18px">
-                            <button style="border: none; background-color: white"  type="button">修改</button>
-                        </div>
-                    </div>
-                </article>
-            </div>
-            <div class="col-sm-9">
-                <h4>問卷</h4>
+    <div class="form-box">
+            <div class="form-content">
+                <h1>問卷</h1>
                 <hr>
-
                 <br><br>
                 <h2>課程難度</h2>
                 <div class="answer_field">
@@ -96,9 +59,8 @@
                 <h2>評論</h2>
                 <textarea id="comment"></textarea>
                 <br>
-                <button id="comment_submit">送出</button>
+                <button type="button" onclick="location.href = location.href.replace(/studentQuestionnaire/, 'courseDetail')" id="comment_submit" class="btn btn-lg btn-success">送出</button>
             </div>
-        </div>
     </div>
     @footerBox("")
 </body>
